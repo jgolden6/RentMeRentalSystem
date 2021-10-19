@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="RentMeRentalSystem.MainMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RentMeRentalSystem"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    d:Height="800"
+    d:Width="600">
+
+    <Grid>
+        <ListView x:Name="MemberListView" Margin="0,0,0,80" ItemClick="MemberListView_ItemClick"/>
+        <Button x:Name="RegisterMemberButton" Content="Register Member" Margin="10,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="RegisterMemberButton_Click"/>
+        <Button x:Name="DeleteMemberButton" Content="Delete Member" Margin="319,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="DeleteMemberButton_Click"/>
+    </Grid>
+</Page>
