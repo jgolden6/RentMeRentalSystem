@@ -7,7 +7,7 @@ Assets\Square44x44Logo.targetsize-24_altform-unplated.png
 Assets\StoreLogo.png
 Assets\Wide310x150Logo.scale-200.png
 App.xbf
-LoginMenu.xbf
-MainMenu.xbf
 RentMeRentalSystem.xr.xml
+View\LoginMenu.xbf
+View\MainMenu.xbf
 Properties\Default.rd.xml
