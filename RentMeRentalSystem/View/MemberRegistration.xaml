@@ -16,24 +16,25 @@
         <TextBlock HorizontalAlignment="Left" Margin="40,80,0,0" Text="Last Name:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="LNameTextBox" HorizontalAlignment="Left" Margin="132,73,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
         <TextBlock HorizontalAlignment="Left" Margin="40,120,0,0" Text="Gender:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <ComboBox  Margin="132,113,0,0" Width="210">
+        <ComboBox x:Name="GenderComboBox"  Margin="132,113,0,0" Width="210">
             <ComboBoxItem Content="Male"/>
             <ComboBoxItem Content="Female"/>
             <ComboBoxItem Content="Other"/>
         </ComboBox>
-        <TextBlock HorizontalAlignment="Left" Margin="40,160,0,0" Text="Phone #:" TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,160,0,0" Text="Phone #:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="PhoneNumberTextBox" HorizontalAlignment="Left" Margin="132,153,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
-        <TextBlock HorizontalAlignment="Left" Margin="40,200,0,0" Text="Address 1:" TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged"/>
-        <TextBox x:Name="Address1TextBox" HorizontalAlignment="Left" Margin="132,193,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
-        <TextBlock HorizontalAlignment="Left" Margin="40,240,0,0" Text="City:" TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,200,0,0" Text="Address:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="AddressTextBox" HorizontalAlignment="Left" Margin="132,193,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,240,0,0" Text="City:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="CityTextBox" HorizontalAlignment="Left" Margin="132,233,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
-        <TextBlock HorizontalAlignment="Left" Margin="40,280,0,0" Text="State:" TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged"/>
-        <TextBox x:Name="StateTextBox" HorizontalAlignment="Left" Margin="132,273,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
-        <TextBlock HorizontalAlignment="Left" Margin="40,320,0,0" Text="Zip Code:" TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,280,0,0" Text="State:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox x:Name="StateComboBox"  Margin="132,274,0,0" Width="210"></ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="40,320,0,0" Text="Zip Code:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="ZipCodeTextBox" HorizontalAlignment="Left" Margin="132,313,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,360,0,0" Text="Birthday:" TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged"/>
-        <DatePicker Margin="89,353,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,360,0,0" Text="DOB:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <DatePicker x:Name="BirthdayDatePicker" Margin="89,353,0,0" VerticalAlignment="Top"/>
         <Button x:Name="RegisterButton" Content="Register" Margin="10,400,0,0" VerticalAlignment="Top" Width="176" Height="50" Click="RegisterButton_Click"/>
         <Button x:Name="CancelButton" Content="Cancel" Margin="214,400,0,0" VerticalAlignment="Top" Width="176" Height="50" Click="CancelButton_Click"/>
+
     </Grid>
 </Page>
