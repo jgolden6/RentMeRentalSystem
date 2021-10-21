@@ -24,23 +24,23 @@ namespace RentMeRentalSystem
         {
             switch(connectionId)
             {
-            case 2: // View\LoginMenu.xaml line 14
+            case 2: // View\LoginMenu.xaml line 16
                 {
                     this.UsernameTextBox = (global::Windows.UI.Xaml.Controls.TextBox)(target);
                 }
                 break;
-            case 3: // View\LoginMenu.xaml line 15
+            case 3: // View\LoginMenu.xaml line 17
                 {
                     this.PasswordTextBox = (global::Windows.UI.Xaml.Controls.TextBox)(target);
                 }
                 break;
-            case 4: // View\LoginMenu.xaml line 19
+            case 4: // View\LoginMenu.xaml line 21
                 {
                     this.LoginButton = (global::Windows.UI.Xaml.Controls.Button)(target);
                     ((global::Windows.UI.Xaml.Controls.Button)this.LoginButton).Click += this.LoginButton_Click;
                 }
                 break;
-            case 5: // View\LoginMenu.xaml line 20
+            case 5: // View\LoginMenu.xaml line 22
                 {
                     this.ErrorTextBlock = (global::Windows.UI.Xaml.Controls.TextBlock)(target);
                 }

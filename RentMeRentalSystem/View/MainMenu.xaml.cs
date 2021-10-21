@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RentMeRentalSystem.View;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace RentMeRentalSystem
 
         private void RegisterMemberButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(MemberRegistration));
         }
 
         private void DeleteMemberButton_Click(object sender, RoutedEventArgs e)
