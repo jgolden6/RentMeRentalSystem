@@ -9725,6 +9725,7 @@
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
+      "BouncyCastle.NetCore >= 1.8.5",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.10",
       "MySql.Data >= 8.0.27"
     ]
@@ -9770,6 +9771,10 @@
     "frameworks": {
       "uap10.0.16299": {
         "dependencies": {
+          "BouncyCastle.NetCore": {
+            "target": "Package",
+            "version": "[1.8.5, )"
+          },
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
             "version": "[6.2.10, )"

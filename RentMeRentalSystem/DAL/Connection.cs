@@ -8,6 +8,6 @@ namespace RentMeRentalSystem.DAL
 {
     public static class Connection
     {
-        public static readonly String connectionString = "server=160.10.217.6; port=3306; uid=ewalke12; pwd=qJec7S0h86N5KAO9; database=cs3230f21j;";
+        public static readonly String connectionString = "server=160.10.217.6; port=3306; uid=cs3230f21j; pwd=qJec7S0h86N5KAO9; database=cs3230f21j;";
     }
 }
