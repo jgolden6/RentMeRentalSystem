@@ -10,8 +10,12 @@
     Height="800"
     Width="600">
 
+    <Page.DataContext>
+        <local:MainMenu/>
+    </Page.DataContext>
+
     <Grid>
-        <ListView x:Name="MemberListView" Margin="0,0,0,80" ItemClick="MemberListView_ItemClick"/>
+        <ListView x:Name="MemberListView" Margin="0,0,0,80" ItemsSource="{Binding Path=CustomerList, Mode=TwoWay}" ItemClick="MemberListView_ItemClick"/>
         <Button x:Name="RegisterMemberButton" Content="Register Member" Margin="10,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="RegisterMemberButton_Click"/>
         <Button x:Name="DeleteMemberButton" Content="Delete Member" Margin="319,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="DeleteMemberButton_Click"/>
     </Grid>

@@ -10,76 +10,118 @@
     <PackageArchitecture>arm</PackageArchitecture>
     <PackageIdentityName>f5940499-2b23-41f6-a6e6-5a67597131c7</PackageIdentityName>
     <PackageIdentityPublisher>CN=Eboni</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\obj\ARM\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\obj\ARM\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\AppX</LayoutDir>
+    <LayoutDir>C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\RentMeRentalSystem.exe">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\RentMeRentalSystem.exe">
       <PackagePath>entrypoint\RentMeRentalSystem.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\bouncycastle.netcore\1.8.5\lib\netstandard2.0\BouncyCastle.Crypto.dll">
+      <PackagePath>BouncyCastle.Crypto.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\google.protobuf\3.14.0\lib\netstandard2.0\Google.Protobuf.dll">
+      <PackagePath>Google.Protobuf.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\k4os.compression.lz4\1.2.6\lib\netstandard2.0\K4os.Compression.LZ4.dll">
+      <PackagePath>K4os.Compression.LZ4.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\k4os.compression.lz4.streams\1.2.6\lib\netstandard2.0\K4os.Compression.LZ4.Streams.dll">
+      <PackagePath>K4os.Compression.LZ4.Streams.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\k4os.hash.xxhash\1.0.6\lib\netstandard2.0\K4os.Hash.xxHash.dll">
+      <PackagePath>K4os.Hash.xxHash.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\mysql.data\8.0.27\lib\netstandard2.0\MySql.Data.dll">
+      <PackagePath>MySql.Data.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\mysql.data\8.0.27\lib\netstandard2.0\Ubiety.Dns.Core.dll">
+      <PackagePath>Ubiety.Dns.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\mysql.data\8.0.27\lib\netstandard2.0\ZstdNet.dll">
+      <PackagePath>ZstdNet.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\runtime.win10-arm.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-arm\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\system.configuration.configurationmanager\4.4.1\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll">
+      <PackagePath>System.Configuration.ConfigurationManager.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\system.runtime.compilerservices.unsafe\5.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+      <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\system.security.cryptography.protecteddata\4.4.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll">
+      <PackagePath>System.Security.Cryptography.ProtectedData.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\system.security.permissions\4.7.0\lib\netstandard2.0\System.Security.Permissions.dll">
+      <PackagePath>System.Security.Permissions.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.18362.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\RentMeRentalSystem.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\RentMeRentalSystem.xr.xml">
       <PackagePath>RentMeRentalSystem.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\MainPage.xbf">
-      <PackagePath>MainPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\View\LoginMenu.xbf">
+      <PackagePath>View\LoginMenu.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\View\MainMenu.xbf">
+      <PackagePath>View\MainMenu.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\View\MemberRegistration.xbf">
+      <PackagePath>View\MemberRegistration.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jared\source\repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\Core\RentMeRentalSystem.exe">
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\ARM\Debug\Core\RentMeRentalSystem.exe">
       <PackagePath>RentMeRentalSystem.exe</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

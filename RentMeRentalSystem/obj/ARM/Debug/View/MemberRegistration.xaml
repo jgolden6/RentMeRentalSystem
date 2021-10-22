@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="RentMeRentalSystem.View.MemberRegistration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RentMeRentalSystem.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Height="460"
+    Width="400">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="40,40,0,0" Text="First Name:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:ConnectionId='2' x:Name="FNameTextBox" HorizontalAlignment="Left" Margin="132,33,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,80,0,0" Text="Last Name:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:ConnectionId='3' x:Name="LNameTextBox" HorizontalAlignment="Left" Margin="132,73,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,120,0,0" Text="Gender:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox x:ConnectionId='4' x:Name="GenderComboBox"  Margin="132,113,0,0" Width="210">
+            <ComboBoxItem Content="Male"/>
+            <ComboBoxItem Content="Female"/>
+            <ComboBoxItem Content="Other"/>
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="40,160,0,0" Text="Phone #:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:ConnectionId='5' x:Name="PhoneNumberTextBox" HorizontalAlignment="Left" Margin="132,153,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,200,0,0" Text="Address:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:ConnectionId='6' x:Name="AddressTextBox" HorizontalAlignment="Left" Margin="132,193,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,240,0,0" Text="City:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:ConnectionId='7' x:Name="CityTextBox" HorizontalAlignment="Left" Margin="132,233,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,280,0,0" Text="State:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox x:ConnectionId='8' x:Name="StateComboBox"  Margin="132,274,0,0" Width="210"></ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="40,320,0,0" Text="Zip Code:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:ConnectionId='9' x:Name="ZipCodeTextBox" HorizontalAlignment="Left" Margin="132,313,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,360,0,0" Text="DOB:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <DatePicker x:ConnectionId='10' x:Name="BirthdayDatePicker" Margin="89,353,0,0" VerticalAlignment="Top"/>
+        <Button x:ConnectionId='11' x:Name="RegisterButton" Content="Register" Margin="10,400,0,0" VerticalAlignment="Top" Width="176" Height="50"                             />
+        <Button x:ConnectionId='12' x:Name="CancelButton" Content="Cancel" Margin="214,400,0,0" VerticalAlignment="Top" Width="176" Height="50"                           />
+
+    </Grid>
+</Page>
+

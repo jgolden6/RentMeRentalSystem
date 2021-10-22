@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj": {}
+    "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj": {
+    "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
+        "projectUniqueName": "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
         "projectName": "RentMeRentalSystem",
-        "projectPath": "C:\\Users\\Administrator\\Source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\obj\\",
+        "projectPath": "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
+        "packagesPath": "C:\\Users\\Jared\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jared\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -28,7 +28,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\Administrator\\Downloads\\blendsdk": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
