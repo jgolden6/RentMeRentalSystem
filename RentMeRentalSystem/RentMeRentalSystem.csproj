@@ -130,8 +130,6 @@
     <Compile Include="DAL\Connection.cs" />
     <Compile Include="DAL\CustomerDAL.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
-    <Compile Include="Extensions\DataReaderExtensions.cs" />
-    <Compile Include="Extensions\MySQLCommandExtensions.cs" />
     <Compile Include="ViewModel\CurrentUser.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Gender.cs" />
