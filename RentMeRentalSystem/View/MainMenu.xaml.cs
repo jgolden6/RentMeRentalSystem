@@ -1,6 +1,7 @@
 ﻿using RentMeRentalSystem.DAL;
 using RentMeRentalSystem.Model;
 using RentMeRentalSystem.View;
+using RentMeRentalSystem.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,10 +27,12 @@ namespace RentMeRentalSystem
     /// </summary>
     public sealed partial class MainMenu : Page
     {
+        CustomerDAL DataAccess = new CustomerDAL();
 
         public MainMenu()
         {
             this.InitializeComponent();
+            CurrentUser.Customers = DataAccess.RetrieveCustomers();
         }
 
         private void RegisterMemberButton_Click(object sender, RoutedEventArgs e)

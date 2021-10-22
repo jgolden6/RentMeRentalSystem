@@ -1,4 +1,7 @@
-﻿namespace RentMeRentalSystem.ViewModel
+﻿using RentMeRentalSystem.Model;
+using System.Collections.Generic;
+
+namespace RentMeRentalSystem.ViewModel
 {
     public class CurrentUser
     {
@@ -43,6 +46,8 @@
         ///     The username.
         /// </value>
         public static string Username { get; set; }
+
+        public static List<Customer> Customers { get; set; }
 
         #endregion
     }

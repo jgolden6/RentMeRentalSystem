@@ -57,5 +57,27 @@ namespace RentMeRentalSystem.DAL
             conn.Close();
             return retrieved;
         }
+
+        public void RegisterCustomer(Customer customer)
+        {
+            using var conn = new MySqlConnection(Connection.connectionString);
+            conn.Open();
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = "INSERT INTO customer(fname,lname,gender,birthdate,phoneNumber,addressLine1,addressLine2,zipcode,city,state,registrationDate) " +
+                "VALUES(@fname, @lname, @gender, @birthdate, @phoneNumber, @addressLine1, @addressLine2, @zipcode, @city, @state, @registrationDate)";
+            cmd.Parameters.AddWithValue("@fname", customer.Fname);
+            cmd.Parameters.AddWithValue("@lname", customer.Lname);
+            cmd.Parameters.AddWithValue("@gender", customer.Gender.ToString());
+            cmd.Parameters.AddWithValue("@birthdate", customer.Birthdate);
+            cmd.Parameters.AddWithValue("@phoneNumber", customer.PhoneNumber);
+            cmd.Parameters.AddWithValue("@addressLine1", customer.AddressLine1);
+            cmd.Parameters.AddWithValue("@addressLine2", customer.AddressLine2);
+            cmd.Parameters.AddWithValue("@zipcode", customer.Zipcode);
+            cmd.Parameters.AddWithValue("@city", customer.City);
+            cmd.Parameters.AddWithValue("@state", customer.State.ToString());
+            cmd.Parameters.AddWithValue("@registrationDate", DateTime.Now.Date);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }

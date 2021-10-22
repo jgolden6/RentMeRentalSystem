@@ -1,4 +1,5 @@
-﻿using RentMeRentalSystem.Model;
+﻿using RentMeRentalSystem.DAL;
+using RentMeRentalSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,7 @@ namespace RentMeRentalSystem.View
     public sealed partial class MemberRegistration : Page
     {
         bool DataValidated = true;
+        CustomerDAL DataAccess = new CustomerDAL();
 
         public MemberRegistration()
         {
@@ -38,8 +40,28 @@ namespace RentMeRentalSystem.View
 
             if (DataValidated)
             {
+                this.RegisterCustomer();
                 this.Frame.Navigate(typeof(MainMenu));
             }
+        }
+
+        private void RegisterCustomer()
+        {
+            Customer customer = new Customer
+            {
+                Fname = FNameTextBox.Text,
+                Lname = LNameTextBox.Text,
+                Gender = (Gender)Enum.Parse(typeof(Gender), GenderComboBox.SelectionBoxItem.ToString()),
+                Birthdate = BirthdayDatePicker.Date.DateTime,
+                PhoneNumber = PhoneNumberTextBox.Text,
+                AddressLine1 = AddressTextBox.Text,
+                AddressLine2 = AddressLine2TextBox.Text,
+                Zipcode = ZipCodeTextBox.Text,
+                City = CityTextBox.Text,
+                State = StateComboBox.SelectionBoxItem.ToString()
+            };
+
+            this.DataAccess.RegisterCustomer(customer);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
