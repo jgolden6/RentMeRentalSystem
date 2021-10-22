@@ -14,7 +14,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The identifier number.
         /// </value>
-        public String IdNumber { get; set; }
+        public string IdNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the first name.
@@ -22,7 +22,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The fname.
         /// </value>
-        public String Fname { get; set; }
+        public string Fname { get; set; }
 
         /// <summary>
         /// Gets or sets the last name.
@@ -30,8 +30,15 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The lname.
         /// </value>
-        public String Lname { get; set; }
+        public string Lname { get; set; }
 
+        /// <summary>
+        /// Sets The full name of the individual.
+        /// </summary>
+        /// <value>
+        /// The The full name of the individual.
+        /// </value>
+        public string FullName => $"{this.Fname} {this.Lname}";
 
         /// <summary>
         /// Gets or sets the gender.
@@ -55,7 +62,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The phone number.
         /// </value>
-        public String PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the address line1.
@@ -63,7 +70,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The address line1.
         /// </value>
-        public String AddressLine1 { get; set; }
+        public string AddressLine1 { get; set; }
 
         /// <summary>
         /// Gets or sets the address line2.
@@ -71,7 +78,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The address line2.
         /// </value>
-        public String AddressLine2 { get; set; }
+        public string AddressLine2 { get; set; }
 
         /// <summary>
         /// Gets or sets the zip code.
@@ -79,7 +86,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The zipcode.
         /// </value>
-        public String Zipcode { get; set; }
+        public string Zipcode { get; set; }
 
         /// <summary>
         /// Gets or sets the city.
@@ -87,7 +94,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The city.
         /// </value>
-        public String City { get; set; }
+        public string City { get; set; }
 
         /// <summary>
         /// Gets or sets the state.
@@ -95,7 +102,6 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The state.
         /// </value>
-        public String State { get; set; }
-
+        public string State { get; set; }
     }
 }

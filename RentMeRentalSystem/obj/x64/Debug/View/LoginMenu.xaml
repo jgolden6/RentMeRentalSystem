@@ -12,7 +12,7 @@
 
     <Grid>
         <TextBox x:ConnectionId='2' x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="115,98,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-        <TextBox x:ConnectionId='3' x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="115,157,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+        <PasswordBox x:ConnectionId='3' x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="115,157,0,0" VerticalAlignment="Top" Width="154"/>
         <TextBlock HorizontalAlignment="Left" Margin="26,105,0,0" Text="Username:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="26,164,0,0" Text="Password:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="28,26,0,0" Text="Login" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>

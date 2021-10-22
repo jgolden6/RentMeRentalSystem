@@ -3,9 +3,9 @@ using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using RentMeRentalSystem.DAL;
 using RentMeRentalSystem.Model;
+using RentMeRentalSystem.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -43,10 +43,15 @@ namespace RentMeRentalSystem
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             String username = this.UsernameTextBox.Text;
-            String password = this.PasswordTextBox.Text;
+            String password = this.PasswordTextBox.Password;
             this.Employee = this.DataAccess.Authenticate(username, password);
             if (this.Employee != null)
             {
+                CurrentUser.Fname = this.Employee.Fname;
+                CurrentUser.Lname = this.Employee.Lname;
+                CurrentUser.IdNumber = this.Employee.IdNumber;
+                CurrentUser.Username = this.Employee.Username;
+                CurrentUser.FullName = this.Employee.FullName;
                 this.Frame.Navigate(typeof(MainMenu));
             }
             else
