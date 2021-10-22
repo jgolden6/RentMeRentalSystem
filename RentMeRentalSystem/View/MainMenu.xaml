@@ -2,21 +2,29 @@
     x:Class="RentMeRentalSystem.MainMenu"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RentMeRentalSystem"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:RentMeRentalSystem.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Height="800"
     Width="600">
 
     <Page.DataContext>
-        <local:MainMenu/>
+        <viewModel:CurrentUser/>
     </Page.DataContext>
 
     <Grid>
         <ListView x:Name="MemberListView" Margin="0,0,0,80" ItemsSource="{Binding Path=CustomerList, Mode=TwoWay}" ItemClick="MemberListView_ItemClick"/>
         <Button x:Name="RegisterMemberButton" Content="Register Member" Margin="10,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="RegisterMemberButton_Click"/>
         <Button x:Name="DeleteMemberButton" Content="Delete Member" Margin="319,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="DeleteMemberButton_Click"/>
+        <TextBlock x:Name="CurrentUsername" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding Path=Username, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="12,10,416,764" RenderTransformOrigin="0.631,0.962" />
+        <TextBlock x:Name="CurrentUserId" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,10,0" />
+        <TextBlock x:Name="CurrentUserFullName" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,144,0" />
+        <ListView x:Name="MemberListView" Margin="0,0,0,80"/>
+        <Button x:Name="RegisterMemberButton" Content="Register Member" Margin="10,725,0,0" VerticalAlignment="Top"
+                Height="70" Width="271" Click="RegisterMemberButton_Click" />
+        <Button x:Name="DeleteMemberButton" Content="Delete Member" Margin="319,725,0,0" VerticalAlignment="Top"
+                Height="70" Width="271" Click="DeleteMemberButton_Click" />
     </Grid>
 </Page>

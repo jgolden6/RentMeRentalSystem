@@ -32,11 +32,10 @@ namespace RentMeRentalSystem.DAL
                 var fname = !reader.IsDBNull(fnameOrdinal) ? reader.GetString(fnameOrdinal) : null;
                 var lname = !reader.IsDBNull(lnameOrdinal) ? reader.GetString(lnameOrdinal) : null;
                 var employeeId = !reader.IsDBNull(idOrdinal) ? reader.GetInt32(idOrdinal).ToString() : null;
-                retrieved.Add(new Employee { Fname = fname, Lname = lname, IdNumber = employeeId });
+                retrieved.Add(new Employee { Fname = fname, Lname = lname, IdNumber = employeeId , Username = username});
             }
-
             conn.Close();
-
+            reader.Close();
             return retrieved.Any() ? retrieved[0] : null;
         }
 

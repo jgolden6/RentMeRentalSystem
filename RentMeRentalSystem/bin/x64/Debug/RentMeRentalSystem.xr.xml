@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
   <Roots.PropertyPathNames>
+<<<<<<< HEAD
     <RootPropertyPathName Name="CustomerList" />
+=======
+    <RootPropertyPathName Name="FullName" />
+    <RootPropertyPathName Name="IdNumber" />
+    <RootPropertyPathName Name="Username" />
+>>>>>>> 157c27d202f37d704ef036f9fa6f89550b533c07
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
@@ -15,12 +21,19 @@
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Children" />
+      <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Text" />
       <RootProperty Name="TextWrapping" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Width" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
     </RootType>
@@ -33,6 +46,9 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="Width" />
+      <RootProperty Name="TextAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="RenderTransformOrigin" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Content" />
@@ -44,6 +60,7 @@
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="RentMeRentalSystem.LoginMenu" />
+<<<<<<< HEAD
     <RootType FullName="RentMeRentalSystem.MainMenu">
       <RootProperty Name="DataContext" />
     </RootType>
@@ -55,6 +72,15 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="ItemsSource" />
       <RootEvent Name="ItemClick" />
+=======
+    <RootType FullName="RentMeRentalSystem.ViewModel.CurrentUser" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Path" />
+      <RootProperty Name="Mode" />
+>>>>>>> 157c27d202f37d704ef036f9fa6f89550b533c07
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
       <RootProperty Name="Margin" />
