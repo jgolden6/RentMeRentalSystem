@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
         "packagesPath": "C:\\Users\\Jared\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\obj\\",
+=======
+    "C:\\Users\\Administrator\\source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Administrator\\source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Administrator\\source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
+        "projectName": "RentMeRentalSystem",
+        "projectPath": "C:\\Users\\Administrator\\source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\obj\\",
+>>>>>>> 157c27d202f37d704ef036f9fa6f89550b533c07
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [

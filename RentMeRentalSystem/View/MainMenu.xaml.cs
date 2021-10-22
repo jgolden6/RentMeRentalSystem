@@ -46,9 +46,5 @@ namespace RentMeRentalSystem
 
         }
 
-        private void MemberListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
     }
 }
