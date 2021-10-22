@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
   <Roots.PropertyPathNames>
-    <RootPropertyPathName Name="Customers" />
     <RootPropertyPathName Name="FullName" />
     <RootPropertyPathName Name="IdNumber" />
     <RootPropertyPathName Name="Username" />
@@ -60,7 +59,6 @@
     <RootType FullName="RentMeRentalSystem.ViewModel.CurrentUser" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Margin" />
-      <RootProperty Name="ItemsSource" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="Path" />
