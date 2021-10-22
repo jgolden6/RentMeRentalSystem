@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using RentMeRentalSystem.DAL;
+using RentMeRentalSystem.Model;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -20,6 +21,8 @@ namespace RentMeRentalSystem
 
         private EmployeeDAL DataAccess { get; set; }
 
+        private Employee Employee { get; set; }
+
         #endregion
 
         #region Constructors
@@ -28,9 +31,9 @@ namespace RentMeRentalSystem
         {
             this.InitializeComponent();
             this.DataAccess = new EmployeeDAL();
-            ApplicationView.PreferredLaunchViewSize = new Size(300, 300);
+            ApplicationView.PreferredLaunchViewSize = new Size(600, 800);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(ApplicationView.PreferredLaunchViewSize);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(300, 300));
         }
 
         #endregion
@@ -41,8 +44,8 @@ namespace RentMeRentalSystem
         {
             String username = this.UsernameTextBox.Text;
             String password = this.PasswordTextBox.Text;
-            int check = this.DataAccess.Authenticate(username, password);
-            if (check != 0)
+            this.Employee = this.DataAccess.Authenticate(username, password);
+            if (this.Employee != null)
             {
                 this.Frame.Navigate(typeof(MainMenu));
             }

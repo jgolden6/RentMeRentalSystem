@@ -1,33 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using RentMeRentalSystem.Model;
 
 namespace RentMeRentalSystem.DAL
 {
-    class EmployeeDAL
+    internal class EmployeeDAL
     {
+        #region Methods
 
-        public int Authenticate(string username, string empPassword)
+        public Employee Authenticate(string username, string password) 
         {
-            using (MySqlConnection conn = new MySqlConnection(Connection.connectionString))
+            using var conn = new MySqlConnection(Connection.connectionString);
+            conn.Open();
+            string ordinals = "fname, lname, employeeId";
+            var query =
+                $"select {ordinals} from employee where username = @username and empPassword = @password";
+            using var cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.Add("@username", MySqlDbType.VarChar);
+            cmd.Parameters["@username"].Value = username;
+            cmd.Parameters.Add("@password", MySqlDbType.VarChar);
+            cmd.Parameters["@password"].Value = password;
+            var retrieved = new List<Employee>();
+            using var reader = cmd.ExecuteReader();
+            var fnameOrdinal = reader.GetOrdinal("fname");
+            var lnameOrdinal = reader.GetOrdinal("lname");
+            var idOrdinal = reader.GetOrdinal("employeeId");
+            while (reader.Read())
             {
-                conn.Open();
-                string query = " select count(*) from employee where username = @username and empPassword = @empPassword ";
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@username", MySqlDbType.VarChar);
-                    cmd.Parameters["@username"].Value = username;
-                    cmd.Parameters.Add("@empPassword", MySqlDbType.VarChar);
-                    cmd.Parameters["@empPassword"].Value = empPassword;
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count;
-                }
+                var fname = !reader.IsDBNull(fnameOrdinal) ? reader.GetString(fnameOrdinal) : null;
+                var lname = !reader.IsDBNull(lnameOrdinal) ? reader.GetString(lnameOrdinal) : null;
+                var employeeId = !reader.IsDBNull(idOrdinal) ? reader.GetInt32(idOrdinal).ToString() : null;
+                retrieved.Add(new Employee { Fname = fname, Lname = lname, IdNumber = employeeId });
             }
+
+            conn.Close();
+
+            return retrieved.Any() ? retrieved[0] : null;
         }
 
+
+        #endregion
     }
 }

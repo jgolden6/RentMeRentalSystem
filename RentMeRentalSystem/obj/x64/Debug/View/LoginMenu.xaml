@@ -11,13 +11,14 @@
     Width="300">
 
     <Grid>
-        <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="115,98,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-        <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="115,157,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:ConnectionId='2' x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="115,98,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:ConnectionId='3' x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="115,157,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
         <TextBlock HorizontalAlignment="Left" Margin="26,105,0,0" Text="Username:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="26,164,0,0" Text="Password:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="28,26,0,0" Text="Login" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
-        <Button x:Name="LoginButton" Content="Login" Margin="0,211,0,0" VerticalAlignment="Top" Width="241" HorizontalAlignment="Center" Click="LoginButton_Click"/>
-        <TextBlock x:Name="ErrorTextBlock" HorizontalAlignment="Center" Margin="0,260,0,0" Text="" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Width="243"/>
+        <Button x:ConnectionId='4' x:Name="LoginButton" Content="Login" Margin="0,211,0,0" VerticalAlignment="Top" Width="241" HorizontalAlignment="Center"                          />
+        <TextBlock x:ConnectionId='5' x:Name="ErrorTextBlock" HorizontalAlignment="Center" Margin="0,260,0,0" Text="" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Width="243"/>
 
     </Grid>
 </Page>
+

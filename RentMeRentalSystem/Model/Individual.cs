@@ -8,9 +8,6 @@ namespace RentMeRentalSystem.Model
 {
     public class Individual
     {
-
-        // idNumber, fname, lname, gender, birthdate, phoneNumber, addressLine1, addressLine2, zipcode, city, state
-
         /// <summary>
         /// Gets or sets the identifier number of the individual.
         /// </summary>
@@ -98,7 +95,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The state.
         /// </value>
-        public States State { get; set; }
+        public String State { get; set; }
 
     }
 }

@@ -17,7 +17,7 @@ namespace RentMeRentalSystem.Model
         /// <value>
         /// The username.
         /// </value>
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// Gets or sets the password.

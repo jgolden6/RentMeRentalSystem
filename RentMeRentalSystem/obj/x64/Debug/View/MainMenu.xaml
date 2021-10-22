@@ -11,8 +11,9 @@
     Width="600">
 
     <Grid>
-        <ListView x:Name="MemberListView" Margin="0,0,0,80" ItemClick="MemberListView_ItemClick"/>
-        <Button x:Name="RegisterMemberButton" Content="Register Member" Margin="10,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="RegisterMemberButton_Click"/>
-        <Button x:Name="DeleteMemberButton" Content="Delete Member" Margin="319,725,0,0" VerticalAlignment="Top" Height="70" Width="271" Click="DeleteMemberButton_Click"/>
+        <ListView x:ConnectionId='2' x:Name="MemberListView" Margin="0,0,0,80"                                     />
+        <Button x:ConnectionId='3' x:Name="RegisterMemberButton" Content="Register Member" Margin="10,725,0,0" VerticalAlignment="Top" Height="70" Width="271"                                   />
+        <Button x:ConnectionId='4' x:Name="DeleteMemberButton" Content="Delete Member" Margin="319,725,0,0" VerticalAlignment="Top" Height="70" Width="271"                                 />
     </Grid>
 </Page>
+
