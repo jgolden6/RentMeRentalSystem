@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "INrZa3hAFS0AvhLAkG30Yxop05EOh5JqV8E5Z6iJq4W11mDqkN23/OAMnFyIsm8MgycTU1sIO9T0pHte2yTyHg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jared\\Source\\Repos\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
-=======
-  "dgSpecHash": "6fDx8jWLL3r/9K8xMAJluGNu0nrEx6m4TeEdmL49OWf289D8Yolc3acH3TDgaQK/1QKPQz817U7/Um/l3OWgUg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\source\\Repos2\\RentMeRentalSystem\\RentMeRentalSystem\\RentMeRentalSystem.csproj",
->>>>>>> 157c27d202f37d704ef036f9fa6f89550b533c07
   "expectedPackageFiles": [
     "C:\\Users\\Jared\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Jared\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

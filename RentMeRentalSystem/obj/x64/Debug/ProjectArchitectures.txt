@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\RentMeRentalSystem.csproj;x64
-=======
-C:\Users\Administrator\source\Repos2\RentMeRentalSystem\RentMeRentalSystem\RentMeRentalSystem.csproj;x64
->>>>>>> 157c27d202f37d704ef036f9fa6f89550b533c07

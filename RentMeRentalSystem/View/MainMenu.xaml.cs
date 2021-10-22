@@ -26,14 +26,10 @@ namespace RentMeRentalSystem
     /// </summary>
     public sealed partial class MainMenu : Page
     {
-        public IList<object> CustomerList { get; set; }
-        private CustomerDAL DataAccess { get; set; }
 
         public MainMenu()
         {
             this.InitializeComponent();
-            this.DataAccess = new CustomerDAL();
-            this.CustomerList = (IList<object>)this.DataAccess.RetrieveCustomers();
         }
 
         private void RegisterMemberButton_Click(object sender, RoutedEventArgs e)
