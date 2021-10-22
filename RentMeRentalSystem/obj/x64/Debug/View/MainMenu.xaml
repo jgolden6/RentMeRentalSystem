@@ -11,7 +11,7 @@
     Width="600">
 
     <Page.DataContext>
-        <local:MainMenu DataContext="{Binding CustomerList}"/>
+        <local:MainMenu/>
     </Page.DataContext>
 
     <Grid>

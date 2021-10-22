@@ -44,17 +44,15 @@
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="RentMeRentalSystem.LoginMenu" />
-    <RootType FullName="RentMeRentalSystem.MainMenu">
-      <RootProperty Name="DataContext" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Data.Binding">
-      <RootProperty Name="Path" />
-      <RootProperty Name="Mode" />
-    </RootType>
+    <RootType FullName="RentMeRentalSystem.MainMenu" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Margin" />
       <RootProperty Name="ItemsSource" />
       <RootEvent Name="ItemClick" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Path" />
+      <RootProperty Name="Mode" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
       <RootProperty Name="Margin" />
