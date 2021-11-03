@@ -16,13 +16,14 @@
 
     <Grid>
         <TextBlock x:ConnectionId='2' x:Name="CurrentUsername" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding Path=Username, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="12,10,416,764" RenderTransformOrigin="0.631,0.962" />
-        <TextBlock x:ConnectionId='3' x:Name="CurrentUserId" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,10,0" />
-        <TextBlock x:ConnectionId='4' x:Name="CurrentUserFullName" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,144,0" />
+        <TextBlock x:ConnectionId='3' x:Name="CurrentUserId" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,100,0" />
+        <TextBlock x:ConnectionId='4' x:Name="CurrentUserFullName" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,200,0" />
         <ListView x:ConnectionId='5' x:Name="MemberListView" Margin="0,50,0,80" ItemsSource="{Binding Path=Customers, Mode=TwoWay}"/>
         <Button x:ConnectionId='6' x:Name="RegisterMemberButton" Content="Register Member" Margin="10,725,0,0" VerticalAlignment="Top"
                 Height="70" Width="271"                                    />
         <Button x:ConnectionId='7' x:Name="DeleteMemberButton" Content="Delete Member" Margin="319,725,0,0" VerticalAlignment="Top"
                 Height="70" Width="271"                                  />
+        <Button x:ConnectionId='8' x:Name="LogoutButton" Content="Logout" Margin="520,8,0,0" VerticalAlignment="Top" Width="70"                           />
     </Grid>
 </Page>
 

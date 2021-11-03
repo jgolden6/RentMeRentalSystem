@@ -1,5 +1,6 @@
 ﻿using RentMeRentalSystem.DAL;
 using RentMeRentalSystem.Model;
+using RentMeRentalSystem.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -173,6 +174,12 @@ namespace RentMeRentalSystem.View
             {
                 DataValidated = false;
             }
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentUser.Logout();
+            this.Frame.Navigate(typeof(LoginMenu));
         }
     }
 }

@@ -20,60 +20,61 @@
                    Margin="12,10,416,764"
                    RenderTransformOrigin="0.631,0.962" />
         <TextBlock x:ConnectionId='3' x:Name="CurrentUserId" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right"
-                   Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,10,0" />
+                   Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,100,0" />
         <TextBlock x:ConnectionId='4' x:Name="CurrentUserFullName" TextAlignment="Left" VerticalAlignment="Top"
                    HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap"
-                   Height="26" Margin="0,10,144,0" />
+                   Height="26" Margin="0,10,200,0" />
         <Grid Margin="10, 50, 10, 10">
             <TextBlock HorizontalAlignment="Left" Margin="60,40,0,0" Text="First Name:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <TextBox x:ConnectionId='5' x:Name="FNameTextBox" HorizontalAlignment="Left" Margin="170,33,0,0" Text="" TextWrapping="Wrap"
+            <TextBox x:ConnectionId='6' x:Name="FNameTextBox" HorizontalAlignment="Left" Margin="170,33,0,0" Text="" TextWrapping="Wrap"
                      VerticalAlignment="Top" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="62,90,0,0" Text="Last Name:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <TextBox x:ConnectionId='6' x:Name="LNameTextBox" HorizontalAlignment="Left" Margin="170,83,0,0" Text="" TextWrapping="Wrap"
+            <TextBox x:ConnectionId='7' x:Name="LNameTextBox" HorizontalAlignment="Left" Margin="170,83,0,0" Text="" TextWrapping="Wrap"
                      VerticalAlignment="Top" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="82,140,0,0" Text="Gender:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <ComboBox x:ConnectionId='7' x:Name="GenderComboBox" Margin="170,133,0,0" Width="210">
+            <ComboBox x:ConnectionId='8' x:Name="GenderComboBox" Margin="170,133,0,0" Width="210">
                 <ComboBoxItem Content="Male" />
                 <ComboBoxItem Content="Female" />
                 <ComboBoxItem Content="Other" />
             </ComboBox>
             <TextBlock HorizontalAlignment="Left" Margin="76,190,0,0" Text="Phone #:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <TextBox x:ConnectionId='8' x:Name="PhoneNumberTextBox" HorizontalAlignment="Left" Margin="170,183,0,0" Text=""
+            <TextBox x:ConnectionId='9' x:Name="PhoneNumberTextBox" HorizontalAlignment="Left" Margin="170,183,0,0" Text=""
                      TextWrapping="Wrap" VerticalAlignment="Top" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="37,240,0,0" Text="Address Line 1:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <TextBox x:ConnectionId='9' x:Name="AddressTextBox" HorizontalAlignment="Left" Margin="170,233,0,0" Text=""
+            <TextBox x:ConnectionId='10' x:Name="AddressTextBox" HorizontalAlignment="Left" Margin="170,233,0,0" Text=""
                      TextWrapping="Wrap"
                      VerticalAlignment="Top" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="37,290,0,0" Text="Address Line 2:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <TextBox x:ConnectionId='10' x:Name="AddressLine2TextBox" HorizontalAlignment="Left" Margin="170,283,0,0" Text=""
+            <TextBox x:ConnectionId='11' x:Name="AddressLine2TextBox" HorizontalAlignment="Left" Margin="170,283,0,0" Text=""
                      TextWrapping="Wrap"
                      VerticalAlignment="Top" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="103,341,0,0" Text="City:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <TextBox x:ConnectionId='11' x:Name="CityTextBox" HorizontalAlignment="Left" Margin="170,332,0,0" Text="" TextWrapping="Wrap"
+            <TextBox x:ConnectionId='12' x:Name="CityTextBox" HorizontalAlignment="Left" Margin="170,332,0,0" Text="" TextWrapping="Wrap"
                      VerticalAlignment="Top" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="96,390,0,0" Text="State:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <ComboBox x:ConnectionId='12' x:Name="StateComboBox" Margin="170,383,0,0" Width="210" />
+            <ComboBox x:ConnectionId='13' x:Name="StateComboBox" Margin="170,383,0,0" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="71,440,0,0" Text="Zip Code:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <TextBox x:ConnectionId='13' x:Name="ZipCodeTextBox" HorizontalAlignment="Left" Margin="170,433,0,0" Text=""
+            <TextBox x:ConnectionId='14' x:Name="ZipCodeTextBox" HorizontalAlignment="Left" Margin="170,433,0,0" Text=""
                      TextWrapping="Wrap"
                      VerticalAlignment="Top" Width="210" />
             <TextBlock HorizontalAlignment="Left" Margin="99,491,0,0" Text="DOB:" TextWrapping="Wrap"
                        VerticalAlignment="Top" />
-            <DatePicker x:ConnectionId='14' x:Name="BirthdayDatePicker" Margin="170,483,0,0" VerticalAlignment="Top" />
-            <Button x:ConnectionId='15' x:Name="RegisterButton" Content="Register" Margin="42,595,0,0" VerticalAlignment="Top" Width="176"
+            <DatePicker x:ConnectionId='15' x:Name="BirthdayDatePicker" Margin="170,483,0,0" VerticalAlignment="Top" />
+            <Button x:ConnectionId='16' x:Name="RegisterButton" Content="Register" Margin="42,595,0,0" VerticalAlignment="Top" Width="176"
                     Height="50"                              />
-            <Button x:ConnectionId='16' x:Name="CancelButton" Content="Cancel" Margin="370,595,38,0" VerticalAlignment="Top"
+            <Button x:ConnectionId='17' x:Name="CancelButton" Content="Cancel" Margin="370,595,38,0" VerticalAlignment="Top"
                     Height="50"                            HorizontalAlignment="Stretch" />
         </Grid>
+        <Button x:ConnectionId='5' x:Name="LogoutButton" Content="Logout" Margin="520,8,0,0" VerticalAlignment="Top" Width="70"                           />
     </Grid>
 </Page>
 

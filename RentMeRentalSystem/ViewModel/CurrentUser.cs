@@ -50,5 +50,14 @@ namespace RentMeRentalSystem.ViewModel
         public static List<Customer> Customers { get; set; }
 
         #endregion
+
+        public static void Logout()
+        {
+            IdNumber = null;
+            Fname = null;
+            Lname = null;
+            FullName = null;
+            Username = null;
+        }
     }
 }

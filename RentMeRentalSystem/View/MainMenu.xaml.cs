@@ -45,5 +45,10 @@ namespace RentMeRentalSystem
 
         }
 
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentUser.Logout();
+            this.Frame.Navigate(typeof(LoginMenu));
+        }
     }
 }
