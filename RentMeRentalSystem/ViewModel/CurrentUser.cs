@@ -49,6 +49,8 @@ namespace RentMeRentalSystem.ViewModel
 
         public static List<Customer> Customers { get; set; }
 
+        public static string SelectedMemberId { get; set; }
+
         #endregion
 
         public static void Logout()

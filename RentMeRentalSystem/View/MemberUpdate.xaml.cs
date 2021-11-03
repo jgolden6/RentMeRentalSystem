@@ -1,6 +1,5 @@
 ﻿using RentMeRentalSystem.DAL;
 using RentMeRentalSystem.Model;
-using RentMeRentalSystem.View;
 using RentMeRentalSystem.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -20,34 +18,31 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace RentMeRentalSystem
+namespace RentMeRentalSystem.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainMenu : Page
+    public sealed partial class MemberUpdate : Page
     {
         CustomerDAL DataAccess = new CustomerDAL();
+        private readonly List<Customer> customers;
 
-        public MainMenu()
+        public MemberUpdate()
         {
-            this.InitializeComponent();
-            CurrentUser.Customers = DataAccess.RetrieveCustomers();
+            InitializeComponent();
+            customers = DataAccess.RetrieveCustomers();
+            PopulateData();
         }
 
-        private void RegisterMemberButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MemberRegistration));
+
         }
 
-        private void UpdateMemberButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MemberUpdate));
-        }
-
-        private void DeleteMemberButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            this.Frame.Navigate(typeof(MainMenu));
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -56,11 +51,16 @@ namespace RentMeRentalSystem
             this.Frame.Navigate(typeof(LoginMenu));
         }
 
-        private void MemberListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PopulateData()
         {
-            string selectedMemberData = MemberListView.SelectedItem.ToString();
-            string selectedMemberID = selectedMemberData.Split(",")[1];
-            CurrentUser.SelectedMemberId = selectedMemberID;
+            NameTextBox.Text = CurrentUser.SelectedMemberId;
+            foreach (Customer customer in customers)
+            {
+                if (customer.IdNumber.Equals(CurrentUser.SelectedMemberId))
+                {
+                    NameTextBox.Text = customer.Fname;
+                }
+            }
         }
     }
 }

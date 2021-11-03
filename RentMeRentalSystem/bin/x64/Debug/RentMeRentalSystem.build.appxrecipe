@@ -118,6 +118,9 @@
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\View\MemberRegistration.xbf">
       <PackagePath>View\MemberRegistration.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\View\MemberUpdate.xbf">
+      <PackagePath>View\MemberUpdate.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
     </AppxPackagedFile>

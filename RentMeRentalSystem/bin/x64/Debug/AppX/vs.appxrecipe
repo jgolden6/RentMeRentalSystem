@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-03T11:34:04.081</Modified>
+      <Modified>2021-11-03T14:25:08.813</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\RentMeRentalSystem.exe">
       <PackagePath>entrypoint\RentMeRentalSystem.exe</PackagePath>
-      <Modified>2021-11-03T11:34:03.528</Modified>
+      <Modified>2021-11-03T14:25:08.260</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\.nuget\packages\bouncycastle.netcore\1.8.5\lib\netstandard2.0\BouncyCastle.Crypto.dll">
       <PackagePath>BouncyCastle.Crypto.dll</PackagePath>
@@ -138,23 +138,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\RentMeRentalSystem.xr.xml">
       <PackagePath>RentMeRentalSystem.xr.xml</PackagePath>
-      <Modified>2021-10-22T10:21:44.118</Modified>
+      <Modified>2021-11-03T14:21:14.775</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-11-03T11:34:03.463</Modified>
+      <Modified>2021-11-03T14:21:58.532</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\View\LoginMenu.xbf">
       <PackagePath>View\LoginMenu.xbf</PackagePath>
-      <Modified>2021-11-03T11:34:03.463</Modified>
+      <Modified>2021-11-03T14:21:58.532</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\View\MainMenu.xbf">
       <PackagePath>View\MainMenu.xbf</PackagePath>
-      <Modified>2021-11-03T11:34:03.463</Modified>
+      <Modified>2021-11-03T14:21:58.532</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\View\MemberRegistration.xbf">
       <PackagePath>View\MemberRegistration.xbf</PackagePath>
-      <Modified>2021-11-03T11:34:03.463</Modified>
+      <Modified>2021-11-03T14:21:58.529</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\View\MemberUpdate.xbf">
+      <PackagePath>View\MemberUpdate.xbf</PackagePath>
+      <Modified>2021-11-03T14:21:58.532</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -162,11 +166,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2021-10-22T11:43:36.176</Modified>
+      <Modified>2021-11-03T13:58:12.108</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jared\Source\Repos\RentMeRentalSystem\RentMeRentalSystem\bin\x64\Debug\Core\RentMeRentalSystem.exe">
       <PackagePath>RentMeRentalSystem.exe</PackagePath>
-      <Modified>2021-11-03T11:34:04.078</Modified>
+      <Modified>2021-11-03T14:25:08.810</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

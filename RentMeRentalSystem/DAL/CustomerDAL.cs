@@ -79,5 +79,10 @@ namespace RentMeRentalSystem.DAL
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
+        public void UpdateCustomer()
+        {
+
+        }
     }
 }

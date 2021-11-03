@@ -70,6 +70,12 @@ namespace RentMeRentalSystem.View
             this.Frame.Navigate(typeof(MainMenu));
         }
 
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentUser.Logout();
+            this.Frame.Navigate(typeof(LoginMenu));
+        }
+
         private void PopulateStateComboBox()
         {
             this.StateComboBox.ItemsSource = USStates.States();
@@ -174,12 +180,6 @@ namespace RentMeRentalSystem.View
             {
                 DataValidated = false;
             }
-        }
-
-        private void LogoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            CurrentUser.Logout();
-            this.Frame.Navigate(typeof(LoginMenu));
         }
     }
 }
