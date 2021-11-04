@@ -80,9 +80,23 @@ namespace RentMeRentalSystem.DAL
             conn.Close();
         }
 
-        public void UpdateCustomer()
+        public void UpdateCustomer(Customer customer)
         {
-
+            using var conn = new MySqlConnection(Connection.connectionString);
+            conn.Open();
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = "UPDATE customer SET phoneNumber = @phoneNumber, addressLine1 = @addressLine1, " +
+                "addressLine2 = @addressLine2, zipcode = @zipcode, city = @city, state = @state " +
+                "WHERE customerId = @customerToUpdateId";
+            cmd.Parameters.AddWithValue("@phoneNumber", customer.PhoneNumber);
+            cmd.Parameters.AddWithValue("@addressLine1", customer.AddressLine1);
+            cmd.Parameters.AddWithValue("@addressLine2", customer.AddressLine2);
+            cmd.Parameters.AddWithValue("@zipcode", customer.Zipcode);
+            cmd.Parameters.AddWithValue("@city", customer.City);
+            cmd.Parameters.AddWithValue("@state", customer.State.ToString());
+            cmd.Parameters.AddWithValue("@customerToUpdateId", customer.IdNumber);
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }

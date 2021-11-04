@@ -59,7 +59,7 @@ namespace RentMeRentalSystem
         private void MemberListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedMemberData = MemberListView.SelectedItem.ToString();
-            string selectedMemberID = selectedMemberData.Split(",")[1];
+            string selectedMemberID = selectedMemberData.Split(",")[1].Trim();
             CurrentUser.SelectedMemberId = selectedMemberID;
         }
     }

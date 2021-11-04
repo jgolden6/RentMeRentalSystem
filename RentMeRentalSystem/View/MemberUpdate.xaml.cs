@@ -25,19 +25,20 @@ namespace RentMeRentalSystem.View
     /// </summary>
     public sealed partial class MemberUpdate : Page
     {
-        CustomerDAL DataAccess = new CustomerDAL();
-        private readonly List<Customer> customers;
+        CustomerDAL DataAccess = new();
+        Customer CustomerToUpdate;
 
         public MemberUpdate()
         {
             InitializeComponent();
-            customers = DataAccess.RetrieveCustomers();
+            PopulateStateComboBox();
             PopulateData();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateCustomerInformation();
+            DataAccess.UpdateCustomer(CustomerToUpdate);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -53,14 +54,35 @@ namespace RentMeRentalSystem.View
 
         private void PopulateData()
         {
-            NameTextBox.Text = CurrentUser.SelectedMemberId;
-            foreach (Customer customer in customers)
+            foreach (Customer customer in CurrentUser.Customers)
             {
                 if (customer.IdNumber.Equals(CurrentUser.SelectedMemberId))
                 {
-                    NameTextBox.Text = customer.Fname;
+                    CustomerToUpdate = customer;
+                    NameTextBox.Text = customer.FullName;
+                    PhoneNumberTextBox.Text = customer.PhoneNumber;
+                    AddressTextBox.Text = customer.AddressLine1;
+                    AddressLine2TextBox.Text = customer.AddressLine2;
+                    CityTextBox.Text = customer.City;
+                    StateComboBox.SelectedValue = customer.State;
+                    ZipCodeTextBox.Text = customer.Zipcode;
                 }
             }
+        }
+
+        private void UpdateCustomerInformation()
+        {
+            CustomerToUpdate.PhoneNumber = PhoneNumberTextBox.Text;
+            CustomerToUpdate.AddressLine1 = AddressTextBox.Text;
+            CustomerToUpdate.AddressLine2 = AddressLine2TextBox.Text;
+            CustomerToUpdate.City = CityTextBox.Text;
+            CustomerToUpdate.State = StateComboBox.SelectionBoxItem.ToString();
+            CustomerToUpdate.Zipcode = ZipCodeTextBox.Text;
+        }
+
+        private void PopulateStateComboBox()
+        {
+            this.StateComboBox.ItemsSource = USStates.States();
         }
     }
 }
