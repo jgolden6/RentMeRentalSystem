@@ -17,6 +17,7 @@ namespace RentMeRentalSystem.ViewModel
         private ObservableCollection<Furniture> furnitureItems;
 
         private readonly FurnitureDAL dataAccess = new();
+        private string cost;
 
         #endregion
 
@@ -65,13 +66,21 @@ namespace RentMeRentalSystem.ViewModel
         /// </value>
         public List<string> Styles { get; set; }
 
+        public string CustomerId { get; set; }
+
+        public string Cost
+        {
+            get => this.cost = "Cost: $";
+            set => this.cost = value;
+        }
+
         #endregion
 
         #region Constructors
 
         public InventoryMenuViewModel()
         {
-            this.resetFurnitureItems();
+            this.ResetFurnitureItems();
             this.Categories = this.dataAccess.RetrieveCategories();
             this.Styles = this.dataAccess.RetrieveStyles();
         }
@@ -101,12 +110,19 @@ namespace RentMeRentalSystem.ViewModel
             this.FurnitureItems =  new ObservableCollection<Furniture>(this.dataAccess.RetrieveFurnitureItemsByCategory(category));
         }
 
+        /// <summary>
+        /// Retrieves the furniture by style.
+        /// </summary>
+        /// <param name="style">The style.</param>
         public void RetrieveFurnitureByStyle(string style)
         {
             this.FurnitureItems =  new ObservableCollection<Furniture>(this.dataAccess.RetrieveFurnitureItemsByStyle(style));
         }
 
-        public void resetFurnitureItems()
+        /// <summary>
+        /// Resets the furniture items.
+        /// </summary>
+        public void ResetFurnitureItems()
         {
             this.FurnitureItems = new ObservableCollection<Furniture>(this.dataAccess.RetrieveFurnitureItems());
         }

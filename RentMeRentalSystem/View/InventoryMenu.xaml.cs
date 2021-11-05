@@ -87,7 +87,7 @@ namespace RentMeRentalSystem.View
 
         private void CreateRentalTransactionButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -111,7 +111,7 @@ namespace RentMeRentalSystem.View
 
         private void ClearSearchButton_Click(object sender, RoutedEventArgs e)
         {
-            this.viewModel.resetFurnitureItems();
+            this.viewModel.ResetFurnitureItems();
             this.FurnitureIdTextBox.Text = string.Empty;
             this.CategoryComboBox.SelectedItem = null;
             this.StyleComboBox.SelectedItem = null;

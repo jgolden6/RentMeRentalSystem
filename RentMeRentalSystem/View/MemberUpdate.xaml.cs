@@ -39,6 +39,7 @@ namespace RentMeRentalSystem.View
         {
             UpdateCustomerInformation();
             DataAccess.UpdateCustomer(CustomerToUpdate);
+            this.Frame.Navigate(typeof(MemberMenu));
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

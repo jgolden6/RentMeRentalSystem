@@ -51,7 +51,7 @@
             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;" Width="29" Height="20" VerticalAlignment="Bottom" />
         </Button>
         <Button Content="Clear Search" Margin="494,49,0,0" VerticalAlignment="Top" Click="ClearSearchButton_Click" />
-        <ListView x:Name="FurnitureListView" BorderBrush="Gray" BorderThickness="0 3 0 3" Margin="0,133,0,80"
+        <ListView x:Name="FurnitureListView" BorderBrush="Gray" BorderThickness="0 3 0 3" Margin="0,133,0,163"
                   ItemsSource="{Binding Path=FurnitureItems, Mode=TwoWay}" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -63,6 +63,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
         <Button x:Name="CreateRentalTransactionButton" Margin="10,725,0,0" VerticalAlignment="Top"
                 Height="70" Width="165" Click="CreateRentalTransactionButton_Click">
             <TextBlock Text="Create Rental Transaction" TextWrapping="Wrap" TextAlignment="Center"
@@ -70,5 +71,9 @@
         </Button>
         <Button x:Name="LogoutButton" Content="Logout" Margin="520,8,0,0" VerticalAlignment="Top" Width="70"
                 Click="LogoutButton_Click" />
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="12,663,0,0" Text="CustomerId:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="12,687,0,0" Text="{Binding Cost, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="94,660,0,0" Text="{Binding CustomerId, Mode=TwoWay}" VerticalAlignment="Top" Width="210"/>
     </Grid>
 </Page>
