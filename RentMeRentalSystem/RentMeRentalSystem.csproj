@@ -149,6 +149,9 @@
     <Compile Include="View\MemberRegistration.xaml.cs">
       <DependentUpon>MemberRegistration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MemberSearch.xaml.cs">
+      <DependentUpon>MemberSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MemberUpdate.xaml.cs">
       <DependentUpon>MemberUpdate.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MemberRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MemberSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

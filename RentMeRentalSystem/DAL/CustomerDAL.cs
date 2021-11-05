@@ -98,5 +98,61 @@ namespace RentMeRentalSystem.DAL
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
+        public List<string> SearchForCustomer(string searchCriteria, string searchInformation)
+        {
+            using var conn = new MySqlConnection(Connection.connectionString);
+            conn.Open();
+            string query = "";
+            var retrieved = new List<string>();
+            switch (searchCriteria)
+            {
+                case "Full Name":
+                    var fname = searchInformation.Split(' ')[0].Trim();
+                    var lname = searchInformation.Split(' ')[1].Trim();
+                    query = $"SELECT * FROM customer WHERE fname = '{fname}' AND lname = '{lname}'";
+                    break;
+                case "Member ID":
+                    query = $"SELECT * FROM customer WHERE customerId = {searchInformation}";
+                    break;
+                case "Phone Number":
+                    query = $"SELECT * FROM customer WHERE phoneNumber = {searchInformation}";
+                    break;
+            }
+
+            using var cmd = new MySqlCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+            var fnameOrdinal = reader.GetOrdinal("fname");
+            var lnameOrdinal = reader.GetOrdinal("lname");
+            var idOrindal = reader.GetOrdinal("customerId");
+            var genderOrdinal = reader.GetOrdinal("gender");
+            var birthdateOrindal = reader.GetOrdinal("birthdate");
+            var phoneNumberOrdinal = reader.GetOrdinal("phoneNumber");
+            var address1Ordinal = reader.GetOrdinal("addressLine1");
+            var address2Ordinal = reader.GetOrdinal("addressLine2");
+            var zipcodeOrdinal = reader.GetOrdinal("zipcode");
+            var cityOrdinal = reader.GetOrdinal("city");
+            var stateOrdinal = reader.GetOrdinal("state");
+            var registrationDateOrdinal = reader.GetOrdinal("registrationDate");
+
+            while (reader.Read())
+            {
+                retrieved.Add(!reader.IsDBNull(fnameOrdinal) ? reader.GetString(fnameOrdinal) : null);
+                retrieved.Add(!reader.IsDBNull(lnameOrdinal) ? reader.GetString(lnameOrdinal) : null);
+                retrieved.Add(!reader.IsDBNull(idOrindal) ? reader.GetString(idOrindal) : null);
+                retrieved.Add(!reader.IsDBNull(genderOrdinal) ? reader.GetString(genderOrdinal) : null);
+                retrieved.Add(!reader.IsDBNull(birthdateOrindal) ? reader.GetString(birthdateOrindal) : null);
+                retrieved.Add(!reader.IsDBNull(phoneNumberOrdinal) ? reader.GetString(phoneNumberOrdinal) : null);
+                retrieved.Add(!reader.IsDBNull(address1Ordinal) ? reader.GetString(address1Ordinal) : null);
+                retrieved.Add(!reader.IsDBNull(address2Ordinal) ? reader.GetString(address2Ordinal) : null);
+                retrieved.Add(!reader.IsDBNull(zipcodeOrdinal) ? reader.GetString(zipcodeOrdinal) : null);
+                retrieved.Add(!reader.IsDBNull(cityOrdinal) ? reader.GetString(cityOrdinal) : null);
+                retrieved.Add(!reader.IsDBNull(stateOrdinal) ? reader.GetString(stateOrdinal) : null);
+                retrieved.Add(!reader.IsDBNull(registrationDateOrdinal) ? reader.GetString(registrationDateOrdinal) : null);
+            }
+
+            conn.Close();
+            return retrieved;
+        }
     }
 }
