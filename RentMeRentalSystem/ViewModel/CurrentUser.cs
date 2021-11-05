@@ -58,34 +58,6 @@ namespace RentMeRentalSystem.ViewModel
         /// </value>
         public static List<Customer> Customers { get; set; }
 
-        /// <summary>
-        /// Gets or sets the furniture items.
-        /// </summary>
-        /// <value>
-        /// The furnitureItems.
-        /// </value>
-        public static List<Furniture> FurnitureItems
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the categories.
-        /// </summary>
-        /// <value>
-        /// The categories.
-        /// </value>
-        public static List<string> Categories { get; set; }
-
-        /// <summary>
-        /// Gets or sets the styles.
-        /// </summary>
-        /// <value>
-        /// The styles.
-        /// </value>
-        public static List<string> Styles { get; set; }
-
         public static string SelectedMemberId { get; set; }
 
         #endregion

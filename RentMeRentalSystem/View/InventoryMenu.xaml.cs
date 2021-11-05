@@ -20,7 +20,7 @@ namespace RentMeRentalSystem.View
     {
         #region Data members
 
-        private readonly FurnitureDAL dataAccess = new();
+        private InventoryMenuViewModel viewModel;
 
         #endregion
 
@@ -29,9 +29,8 @@ namespace RentMeRentalSystem.View
         public InventoryMenu()
         {
             this.InitializeComponent();
-            CurrentUser.FurnitureItems = this.dataAccess.RetrieveFurnitureItems();
-            CurrentUser.Categories = this.dataAccess.RetrieveCategories();
-            CurrentUser.Styles = this.dataAccess.RetrieveStyles();
+            this.viewModel = new InventoryMenuViewModel();
+            this.DataContext = this.viewModel;
         }
 
         #endregion
@@ -96,18 +95,23 @@ namespace RentMeRentalSystem.View
             if (this.validateSearch())
             {
                 this.ErrorText.Text = string.Empty;
-                this.retrieveFurnitureById();
-                this.retrieveFurnitureByCategory();
-                this.retrieveFurnitureByStyle();
-            }
+                if (this.FurnitureIdTextBox.IsEnabled && this.validateFurnitureId())
+                {
+                    this.viewModel.RetrieveFurnitureById(this.FurnitureIdTextBox.Text);
+                } else if (this.CategoryComboBox.IsEnabled && this.CategoryComboBox.SelectionBoxItem != null)
 
-            this.FurnitureListView.ItemsSource = CurrentUser.FurnitureItems;
+                {
+                    this.viewModel.RetrieveFurnitureByCategory(this.CategoryComboBox.SelectionBoxItem.ToString());
+                } else if (this.StyleComboBox.IsEnabled && this.StyleComboBox.SelectionBoxItem != null)
+                {
+                    this.viewModel.RetrieveFurnitureByStyle(this.StyleComboBox.SelectionBoxItem.ToString());
+                }
+            }
         }
 
         private void ClearSearchButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentUser.FurnitureItems = this.dataAccess.RetrieveFurnitureItems();
-            this.FurnitureListView.ItemsSource = CurrentUser.FurnitureItems;
+            this.viewModel.resetFurnitureItems();
             this.FurnitureIdTextBox.Text = string.Empty;
             this.CategoryComboBox.SelectedItem = null;
             this.StyleComboBox.SelectedItem = null;
@@ -115,37 +119,6 @@ namespace RentMeRentalSystem.View
             this.CategoryComboBox.IsEnabled = true;
             this.StyleComboBox.IsEnabled = true;
             this.ErrorText.Text = string.Empty;
-        }
-
-
-        private void retrieveFurnitureById()
-        {
-
-            if (this.FurnitureIdTextBox.IsEnabled && this.validateFurnitureId())
-            {
-                CurrentUser.FurnitureItems = this.dataAccess.RetrieveSingleFurnitureItemById(int.Parse(this.FurnitureIdTextBox.Text));
-            }
-
-        }
-
-        private void retrieveFurnitureByCategory()
-        {
-
-            if (this.CategoryComboBox.IsEnabled && this.CategoryComboBox.SelectionBoxItem != null)
-            {
-                CurrentUser.FurnitureItems = this.dataAccess.RetrieveFurnitureItemsByCategory(this.CategoryComboBox.SelectionBoxItem.ToString());
-            }
-
-        }
-
-        private void retrieveFurnitureByStyle()
-        {
-
-            if (this.StyleComboBox.IsEnabled && this.StyleComboBox.SelectionBoxItem != null)
-            {
-                CurrentUser.FurnitureItems = this.dataAccess.RetrieveFurnitureItemsByStyle(this.StyleComboBox.SelectionBoxItem.ToString());
-            }
-
         }
 
 

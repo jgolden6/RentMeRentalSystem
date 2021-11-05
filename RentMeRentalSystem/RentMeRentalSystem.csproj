@@ -145,6 +145,7 @@
     <Compile Include="Model\Individual.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\USStates.cs" />
+    <Compile Include="ViewModel\InventoryMenuViewModel.cs" />
     <Compile Include="View\InventoryMenu.xaml.cs">
       <DependentUpon>InventoryMenu.xaml</DependentUpon>
     </Compile>

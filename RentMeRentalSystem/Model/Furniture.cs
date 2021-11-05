@@ -18,9 +18,8 @@ namespace RentMeRentalSystem.Model
 
         public int Quantity { get; set; }
 
-        public override string ToString()
-        {
-            return $"{FurnitureId}, {CategoryName}, {StyleName}, {DailyRentalRate}, {Quantity}";
-        }
+        public List<int> QuantityList => Enumerable.Range(1, this.Quantity).ToList();
+
+        public string StringValue => $"{FurnitureId}, {CategoryName}, {StyleName}, {DailyRentalRate}, {Quantity}";
     }
 }
