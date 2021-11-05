@@ -129,7 +129,10 @@
     </Compile>
     <Compile Include="DAL\Connection.cs" />
     <Compile Include="DAL\CustomerDAL.cs" />
+    <Compile Include="DAL\DataReaderHelper.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
+    <Compile Include="DAL\FurnitureDAL.cs" />
+    <Compile Include="DAL\RentalTransactionDAL.cs" />
     <Compile Include="ViewModel\CurrentUser.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Gender.cs" />
@@ -164,7 +167,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Resources\MySQLScripts\tableCreationScripts.txt" />
+    <Content Include="Resources\MySQLScripts\tableCreationScripts.sql" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
