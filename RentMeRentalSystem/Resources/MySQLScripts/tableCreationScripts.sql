@@ -143,6 +143,21 @@ CREATE TABLE furniture(
 
 alter table `furniture` auto_increment = 10000;
 
+INSERT INTO furniture
+VALUES(0, "Beds", "Contemporary", 1.99, 7),(0, "Chairs", "Oriental", 2.99, 25),(
+    0,
+    "Couches",
+    "Traditional",
+    0.25,
+    3
+),(0, "Desks", "Victorian", 2.99, 12),(
+    0,
+    "Dining Tables",
+    "Modern",
+    0.75,
+    9
+);
+
 CREATE TABLE rental_item(
     rentalId INTEGER NOT NULL,
     furnitureId INTEGER NOT NULL,
