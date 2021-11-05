@@ -30,7 +30,6 @@ namespace RentMeRentalSystem.DAL
             var idOrdinal = reader.GetOrdinal("employeeId");
             while (reader.Read())
             {
-                
                 var fname = reader.GetFieldValueCheckNull<string>(fnameOrdinal);
                 var lname = reader.GetFieldValueCheckNull<string>(lnameOrdinal);
                 var employeeId = reader.GetFieldValueCheckNull<int>(idOrdinal).ToString();

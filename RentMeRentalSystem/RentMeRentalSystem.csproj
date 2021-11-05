@@ -132,7 +132,12 @@
     <Compile Include="DAL\DataReaderHelper.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
     <Compile Include="DAL\FurnitureDAL.cs" />
+    <Compile Include="DAL\RentalItemDAL.cs" />
     <Compile Include="DAL\RentalTransactionDAL.cs" />
+    <Compile Include="Model\Furniture.cs" />
+    <Compile Include="Model\RentalItem.cs" />
+    <Compile Include="Model\RentalTransaction.cs" />
+    <Compile Include="Model\Transaction.cs" />
     <Compile Include="ViewModel\CurrentUser.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Gender.cs" />
