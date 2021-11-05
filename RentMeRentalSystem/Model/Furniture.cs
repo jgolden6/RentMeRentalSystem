@@ -17,5 +17,10 @@ namespace RentMeRentalSystem.Model
         public double DailyRentalRate { get; set; }
 
         public int Quantity { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FurnitureId}, {CategoryName}, {StyleName}, {DailyRentalRate}, {Quantity}";
+        }
     }
 }

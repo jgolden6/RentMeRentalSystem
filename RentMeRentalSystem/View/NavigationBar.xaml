@@ -9,40 +9,44 @@
     Height="800"
     Width="1000">
 
-    <Grid x:Name="AppGrid">
-        <NavigationView  x:Name="NavView" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" OpenPaneLength="135"  Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked">
+    <Grid>
+        <NavigationView x:Name="NavView" IsSettingsVisible="False" OpenPaneLength="135"
+                        Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked" BackRequested="NavView_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Members" Tag="Members">
                     <ToolTipService.ToolTip>
-                        <ToolTip Content="View Members" 
-                                 HorizontalOffset="20" VerticalOffset="30"/>
+                        <ToolTip Content="View Members"
+                                 HorizontalOffset="20" VerticalOffset="30" />
                     </ToolTipService.ToolTip>
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE716;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE716;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Content="Inventory" Tag="Inventory">
                     <ToolTipService.ToolTip>
-                        <ToolTip Content="View Inventory" 
-                                 HorizontalOffset="20" VerticalOffset="30"/>
+                        <ToolTip Content="View Inventory"
+                                 HorizontalOffset="20" VerticalOffset="30" />
                     </ToolTipService.ToolTip>
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEA37;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEA37;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Content="Transactions" Tag="Transactions">
                     <ToolTipService.ToolTip>
-                        <ToolTip Content="View Transactions" 
-                                 HorizontalOffset="20" VerticalOffset="30"/>
+                        <ToolTip Content="View Transactions"
+                                 HorizontalOffset="20" VerticalOffset="30" />
                     </ToolTipService.ToolTip>
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC59;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC59;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Tag="MemberRegistration" Visibility="Collapsed" />
+                <NavigationViewItem Tag="MemberSearch" Visibility="Collapsed" />
+                <NavigationViewItem Tag="MemberUpdate" Visibility="Collapsed" />
             </NavigationView.MenuItems>
             <ScrollViewer>
                 <Frame x:Name="ContentFrame" Padding="12,0,12,24" IsTabStop="True"
-                       NavigationFailed="ContentFrame_NavigationFailed" Navigated="On_Navigated"/>
+                       NavigationFailed="ContentFrame_NavigationFailed" Navigated="On_Navigated" />
             </ScrollViewer>
         </NavigationView>
     </Grid>

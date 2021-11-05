@@ -6,27 +6,28 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using RentMeRentalSystem.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace RentMeRentalSystem.View
 {
     /// <summary>
-    /// 11/5/2021 The navigation bar
+    ///     11/5/2021 The navigation bar
     /// </summary>
     /// <seealso cref="Windows.UI.Xaml.Controls.Page" />
     /// <author>
-    /// Eboni Walker
+    ///     Eboni Walker
     /// </author>
     public sealed partial class NavigationBar : Page
     {
         #region Data members
 
         private readonly List<(string Tag, Type Page)> navigationPages = new() {
-            ("Members", typeof(MemberMenu))
-            // ("Inventory", typeof(GamesPage)),
-            // ("music", typeof(MusicPage)),
+            ("Members", typeof(MemberMenu)),
+            ("MemberUpdate", typeof(MemberUpdate)),
+            ("MemberSearch", typeof(MemberSearch)),
+            ("MemberRegistration", typeof(MemberRegistration)),
+            ("Inventory", typeof(InventoryMenu))
         };
 
         #endregion
@@ -44,10 +45,10 @@ namespace RentMeRentalSystem.View
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            NavView.SelectedItem = NavView.MenuItems[0];
-            NavView_Navigate("Members", new Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
+            this.NavView.SelectedItem = this.NavView.MenuItems[0];
+            this.NavView_Navigate("Members", new EntranceNavigationTransitionInfo());
+            SystemNavigationManager.GetForCurrentView().BackRequested += this.System_BackRequested;
         }
-
 
         private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
@@ -68,7 +69,7 @@ namespace RentMeRentalSystem.View
             string navItemTag,
             NavigationTransitionInfo transitionInfo)
         {
-            Type navigationPage = this.navigationPages.FirstOrDefault(p => p.Tag.Equals(navItemTag)).Page;
+            var navigationPage = this.navigationPages.FirstOrDefault(p => p.Tag.Equals(navItemTag)).Page;
             var preNavPageType = this.ContentFrame.CurrentSourcePageType;
 
             if (!(navigationPage == null) && preNavPageType != navigationPage)
@@ -79,16 +80,53 @@ namespace RentMeRentalSystem.View
 
         private void On_Navigated(object sender, NavigationEventArgs e)
         {
+            if (ContentFrame.SourcePageType == typeof(LoginMenu))
+            {
+                this.Frame.Navigate(typeof(LoginMenu));
+                return;
+            }
+
             var item = this.navigationPages.FirstOrDefault(p => p.Page == e.SourcePageType);
 
+            this.NavView.IsBackEnabled = this.ContentFrame.CanGoBack;
+           
             this.NavView.SelectedItem = this.NavView.MenuItems
                                             .OfType<NavigationViewItem>()
                                             .First(navigationViewItem => navigationViewItem.Tag.Equals(item.Tag));
-            if (item.Tag.Equals("Home"))
+        }
+
+        private void NavView_BackRequested(NavigationView sender,
+            NavigationViewBackRequestedEventArgs args)
+        {
+            this.tryGoBack();
+        }
+
+        private void System_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (!e.Handled)
             {
-                this.NavView.Visibility = Visibility.Collapsed;
+                e.Handled = this.tryGoBack();
             }
         }
+
+        private bool tryGoBack()
+        {
+            if (!this.ContentFrame.CanGoBack)
+            {
+                return false;
+            }
+
+            if (this.NavView.IsPaneOpen &&
+                (this.NavView.DisplayMode == NavigationViewDisplayMode.Compact ||
+                 this.NavView.DisplayMode == NavigationViewDisplayMode.Minimal))
+            {
+                return false;
+            }
+
+            this.ContentFrame.GoBack();
+            return true;
+        }
+
         #endregion
     }
 }

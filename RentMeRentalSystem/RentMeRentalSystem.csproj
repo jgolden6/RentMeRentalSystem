@@ -138,12 +138,16 @@
     <Compile Include="Model\RentalItem.cs" />
     <Compile Include="Model\RentalTransaction.cs" />
     <Compile Include="Model\Transaction.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\CurrentUser.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Individual.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\USStates.cs" />
+    <Compile Include="View\InventoryMenu.xaml.cs">
+      <DependentUpon>InventoryMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NavigationBar.xaml.cs">
       <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
@@ -185,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\InventoryMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NavigationBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
