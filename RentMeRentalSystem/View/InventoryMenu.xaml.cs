@@ -95,6 +95,7 @@ namespace RentMeRentalSystem.View
         {
             if (this.validateSearch())
             {
+                this.ErrorText.Text = string.Empty;
                 this.retrieveFurnitureById();
                 this.retrieveFurnitureByCategory();
                 this.retrieveFurnitureByStyle();
@@ -113,6 +114,7 @@ namespace RentMeRentalSystem.View
             this.FurnitureIdTextBox.IsEnabled = true;
             this.CategoryComboBox.IsEnabled = true;
             this.StyleComboBox.IsEnabled = true;
+            this.ErrorText.Text = string.Empty;
         }
 
 
@@ -153,23 +155,22 @@ namespace RentMeRentalSystem.View
             if (!Regex.Match(this.FurnitureIdTextBox.Text, "^[0-9]{5}$").Success)
             {
                 this.ErrorText.Text = "Incorrect Furniture ID. Please input a five digit number";
+                this.FurnitureIdTextBox.Text = string.Empty;
                 dataValidated = false;
             }
-
             return dataValidated;
         }
 
         private bool validateSearch()
         {
             var searchValidated = true;
-            if (!this.FurnitureIdTextBox.Text.Any() && this.CategoryComboBox.SelectionBoxItem == null &&
-                this.StyleComboBox.SelectionBoxItem == null)
+            if (!this.FurnitureIdTextBox.Text.Any() && this.CategoryComboBox.SelectedItem == null &&
+                this.StyleComboBox.SelectedItem == null)
             {
                 this.ErrorText.Text =
                     "Please enter a Furniture ID, select a category, or select a style to search the inventory.";
                 searchValidated = false;
             }
-
             return searchValidated;
         }
 
