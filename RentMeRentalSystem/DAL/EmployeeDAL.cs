@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DBAccess.DAL;
 using MySql.Data.MySqlClient;
 using RentMeRentalSystem.Model;
 
@@ -29,9 +30,10 @@ namespace RentMeRentalSystem.DAL
             var idOrdinal = reader.GetOrdinal("employeeId");
             while (reader.Read())
             {
-                var fname = !reader.IsDBNull(fnameOrdinal) ? reader.GetString(fnameOrdinal) : null;
-                var lname = !reader.IsDBNull(lnameOrdinal) ? reader.GetString(lnameOrdinal) : null;
-                var employeeId = !reader.IsDBNull(idOrdinal) ? reader.GetInt32(idOrdinal).ToString() : null;
+                
+                var fname = reader.GetFieldValueCheckNull<string>(fnameOrdinal);
+                var lname = reader.GetFieldValueCheckNull<string>(lnameOrdinal);
+                var employeeId = reader.GetFieldValueCheckNull<int>(idOrdinal).ToString();
                 retrieved.Add(new Employee { Fname = fname, Lname = lname, IdNumber = employeeId , Username = username});
             }
             conn.Close();
