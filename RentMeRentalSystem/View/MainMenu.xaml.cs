@@ -62,5 +62,10 @@ namespace RentMeRentalSystem
             string selectedMemberID = selectedMemberData.Split(",")[1].Trim();
             CurrentUser.SelectedMemberId = selectedMemberID;
         }
+
+        private void SearchMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MemberSearch));
+        }
     }
 }
