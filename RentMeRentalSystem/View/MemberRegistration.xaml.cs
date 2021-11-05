@@ -42,7 +42,7 @@ namespace RentMeRentalSystem.View
             if (DataValidated)
             {
                 this.RegisterCustomer();
-                this.Frame.Navigate(typeof(MainMenu));
+                this.Frame.Navigate(typeof(MemberMenu));
             }
         }
 
@@ -67,7 +67,7 @@ namespace RentMeRentalSystem.View
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainMenu));
+            this.Frame.Navigate(typeof(MemberMenu));
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

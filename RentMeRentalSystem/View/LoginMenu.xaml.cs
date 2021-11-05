@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using RentMeRentalSystem.DAL;
 using RentMeRentalSystem.Model;
+using RentMeRentalSystem.View;
 using RentMeRentalSystem.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -31,7 +32,7 @@ namespace RentMeRentalSystem
         {
             this.InitializeComponent();
             this.DataAccess = new EmployeeDAL();
-            ApplicationView.PreferredLaunchViewSize = new Size(600, 800);
+            ApplicationView.PreferredLaunchViewSize = new Size(1000, 800);
             ApplicationView.GetForCurrentView().SetPreferredMinSize(ApplicationView.PreferredLaunchViewSize);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
@@ -52,7 +53,7 @@ namespace RentMeRentalSystem
                 CurrentUser.IdNumber = this.Employee.IdNumber;
                 CurrentUser.Username = this.Employee.Username;
                 CurrentUser.FullName = this.Employee.FullName;
-                this.Frame.Navigate(typeof(MainMenu));
+                this.Frame.Navigate(typeof(NavigationBar));
             }
             else
             {
