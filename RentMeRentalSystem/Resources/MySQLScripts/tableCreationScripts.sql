@@ -108,3 +108,62 @@ VALUES(
     'Georgia',
     '2020-11-13'
 );
+
+CREATE TABLE `transaction`(
+    transactionId INTEGER AUTO_INCREMENT NOT NULL,
+    employeeId INTEGER NOT NULL,
+    customerId INTEGER NOT NULL,
+    fee DECIMAL(9, 2) NOT NULL,
+    dueDate DATE NOT NULL,
+    PRIMARY KEY(transactionId),
+    FOREIGN KEY(employeeId) REFERENCES employee(employeeId) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(customerId) REFERENCES customer(customerId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+ALTER TABLE
+    `transaction` AUTO_INCREMENT = 1000;
+
+CREATE TABLE rental_transaction(
+    rentalId INTEGER NOT NULL,
+    rentalDate DATE NOT NULL,
+    PRIMARY KEY(rentalId),
+    FOREIGN KEY(rentalId) REFERENCES `transaction`(transactionId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE furniture(
+    furnitureId INTEGER AUTO_INCREMENT NOT NULL,
+    categoryName VARCHAR(30) NOT NULL DEFAULT "Miscellaneous",
+    styleName VARCHAR(30) NOT NULL DEFAULT "Miscellaneous",
+    daily_rental_rate DECIMAL(9, 2),
+    quantity INTEGER NOT NULL,
+    PRIMARY KEY(furnitureId),
+    FOREIGN KEY(categoryName) REFERENCES category(categoryName) ON DELETE SET DEFAULT ON UPDATE CASCADE,
+    FOREIGN KEY(styleName) REFERENCES style(styleName) ON DELETE SET DEFAULT ON UPDATE CASCADE
+);
+
+alter table `furniture` auto_increment = 10000;
+
+CREATE TABLE rental_item(
+    rentalId INTEGER NOT NULL,
+    furnitureId INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    PRIMARY KEY(rentalId, furnitureId),
+    FOREIGN KEY(rentalId) REFERENCES rental_transaction(rentalId) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(furnitureId) REFERENCES furniture(furnitureId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE category(
+    categoryName VARCHAR(30) NOT NULL,
+    PRIMARY KEY(categoryName)
+);
+
+INSERT INTO category
+VALUES("Miscellaneous"),("Beds"),("Dining Tables"),("Desks"),("Couches"),("Chairs");
+
+CREATE TABLE style(
+    styleName VARCHAR(30) NOT NULL,
+    PRIMARY KEY(styleName)
+);
+
+INSERT INTO style
+VALUES("Miscellaneous"),("Modern"),("Victorian"),("Oriental"),("Traditional"),("Contemporary");
