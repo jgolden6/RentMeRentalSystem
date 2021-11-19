@@ -88,9 +88,14 @@ namespace RentMeRentalSystem.DAL
             using var conn = new MySqlConnection(Connection.connectionString);
             conn.Open();
             using var cmd = conn.CreateCommand();
-            cmd.CommandText = "UPDATE customer SET phoneNumber = @phoneNumber, addressLine1 = @addressLine1, " +
+            cmd.CommandText = "UPDATE customer SET fname = @fname, lname = @lname, gender = @gender, birthdate = @birthdate, " +
+                "phoneNumber = @phoneNumber, addressLine1 = @addressLine1, " +
                 "addressLine2 = @addressLine2, zipcode = @zipcode, city = @city, state = @state " +
                 "WHERE customerId = @customerToUpdateId";
+            cmd.Parameters.AddWithValue("@fname", customer.Fname);
+            cmd.Parameters.AddWithValue("@lname", customer.Lname);
+            cmd.Parameters.AddWithValue("@gender", customer.Gender.ToString());
+            cmd.Parameters.AddWithValue("@birthdate", customer.Birthdate);
             cmd.Parameters.AddWithValue("@phoneNumber", customer.PhoneNumber);
             cmd.Parameters.AddWithValue("@addressLine1", customer.AddressLine1);
             cmd.Parameters.AddWithValue("@addressLine2", customer.AddressLine2);
