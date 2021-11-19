@@ -1,4 +1,10 @@
-﻿namespace RentMeRentalSystem.ViewModel
+﻿using RentMeRentalSystem.Model;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using RentMeRentalSystem.Annotations;
+
+namespace RentMeRentalSystem.ViewModel
 {
     public class CurrentUser
     {
@@ -44,6 +50,25 @@
         /// </value>
         public static string Username { get; set; }
 
+        /// <summary>
+        /// Gets or sets the customers.
+        /// </summary>
+        /// <value>
+        /// The customers.
+        /// </value>
+        public static List<Customer> Customers { get; set; }
+
+        public static string SelectedMemberId { get; set; }
+
         #endregion
+
+        public static void Logout()
+        {
+            IdNumber = null;
+            Fname = null;
+            Lname = null;
+            FullName = null;
+            Username = null;
+        }
     }
 }

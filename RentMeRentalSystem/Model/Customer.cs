@@ -14,7 +14,7 @@ namespace RentMeRentalSystem.Model
     /// <author>
     /// Eboni Walker
     /// </author>
-    class Customer : Individual
+    public class Customer : Individual
     {
 
         /// <summary>
@@ -24,5 +24,10 @@ namespace RentMeRentalSystem.Model
         /// The registration date.
         /// </value>
         public DateTime RegistrationDate { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FullName}, {IdNumber}, {PhoneNumber}";
+        }
     }
 }

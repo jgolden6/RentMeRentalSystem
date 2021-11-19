@@ -128,24 +128,46 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DAL\Connection.cs" />
+    <Compile Include="DAL\CustomerDAL.cs" />
+    <Compile Include="DAL\DataReaderHelper.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
-    <Compile Include="Extensions\DataReaderExtensions.cs" />
-    <Compile Include="Extensions\MySQLCommandExtensions.cs" />
+    <Compile Include="DAL\FurnitureDAL.cs" />
+    <Compile Include="DAL\RentalItemDAL.cs" />
+    <Compile Include="DAL\RentalTransactionDAL.cs" />
+    <Compile Include="DAL\SecurePasswordHasher.cs" />
+    <Compile Include="Model\Furniture.cs" />
+    <Compile Include="Model\RentalItem.cs" />
+    <Compile Include="Model\RentalTransaction.cs" />
+    <Compile Include="Model\Transaction.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\CurrentUser.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Individual.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\USStates.cs" />
+    <Compile Include="ViewModel\InventoryMenuViewModel.cs" />
+    <Compile Include="View\InventoryMenu.xaml.cs">
+      <DependentUpon>InventoryMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NavigationBar.xaml.cs">
+      <DependentUpon>NavigationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginMenu.xaml.cs">
       <DependentUpon>LoginMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainMenu.xaml.cs">
-      <DependentUpon>MainMenu.xaml</DependentUpon>
+    <Compile Include="View\MemberMenu.xaml.cs">
+      <DependentUpon>MemberMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\MemberRegistration.xaml.cs">
       <DependentUpon>MemberRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MemberSearch.xaml.cs">
+      <DependentUpon>MemberSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MemberUpdate.xaml.cs">
+      <DependentUpon>MemberUpdate.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -162,22 +184,38 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Resources\MySQLScripts\tableCreationScripts.txt" />
+    <Content Include="Resources\MySQLScripts\tableCreationScripts.sql" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\InventoryMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainMenu.xaml">
+    <Page Include="View\MemberMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MemberRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MemberSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MemberUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="RentMeRentalSystem.View.InventoryMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:RentMeRentalSystem.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Height="800"
+    Width="600">
+
+    <Page.DataContext>
+        <viewModel:InventoryMenuViewModel />
+    </Page.DataContext>
+
+    <Grid>
+        <TextBlock x:Name="CurrentUsername" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Text="{Binding Path=Username, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="12,10,416,764"
+                   RenderTransformOrigin="0.631,0.962">
+            <TextBlock.DataContext>
+                <viewModel:CurrentUser />
+            </TextBlock.DataContext>
+        </TextBlock>
+        <TextBlock x:Name="CurrentUserId" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right"
+                   Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,100,0">
+            <TextBlock.DataContext>
+                <viewModel:CurrentUser />
+            </TextBlock.DataContext>
+        </TextBlock>
+        <TextBlock x:Name="CurrentUserFullName" TextAlignment="Left" VerticalAlignment="Top"
+                   HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap"
+                   Height="26" Margin="0,10,200,0">
+            <TextBlock.DataContext>
+                <viewModel:CurrentUser />
+            </TextBlock.DataContext>
+        </TextBlock>
+        <TextBlock Text="Furniture ID :" Height="26" Margin="10,52,469,722" />
+        <TextBlock x:Name="ErrorText" Foreground="Red" Margin="217,741,27,15" TextWrapping="Wrap" />
+        <TextBox x:Name="FurnitureIdTextBox" HorizontalAlignment="Left" Margin="94,49,0,0" Text=""
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TextChanged="FurnitureIdTextBox_TextChanged"
+                 BeforeTextChanging="FurnitureTextBox_BeforeTextChanging" />
+        <TextBlock Text="Category:" Height="26" Margin="10,99,469,675" />
+        <ComboBox x:Name="CategoryComboBox" Margin="72,96,0,0" Width="145"
+                  SelectionChanged="CategoryComboBox_SelectionChanged"
+                  ItemsSource="{Binding  Path=Categories, Mode=OneWay}" />
+        <TextBlock Text="Style:" Height="26" Margin="271,99,208,675" />
+        <ComboBox x:Name="StyleComboBox" Margin="307,96,0,0" Width="145"
+                  SelectionChanged="StyleComboBox_SelectionChanged" ItemsSource="{Binding  Path=Styles, Mode=OneWay}" />
+        <Button Click="SearchButton_Click" Margin="535,92,0,0" VerticalAlignment="Top" Height="36" Width="55">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;" Width="29" Height="20" VerticalAlignment="Bottom" />
+        </Button>
+        <Button Content="Clear Search" Margin="494,49,0,0" VerticalAlignment="Top" Click="ClearSearchButton_Click" />
+        <ListView x:Name="FurnitureListView" BorderBrush="Gray" BorderThickness="0 3 0 3" Margin="0,133,0,163"
+                  ItemsSource="{Binding Path=FurnitureItems, Mode=TwoWay}" IsItemClickEnabled="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Width="585">
+                        <CheckBox x:Name="listItemCheckBox" IsChecked="{Binding is_checked,Mode=OneWay}"></CheckBox>
+                        <ComboBox x:Name="listItemComboBox" Margin="0 0 50 0" ItemsSource="{Binding QuantityList, Mode=OneWay}"/>
+                        <TextBlock x:Name="listTextCheckBox" Text="{Binding StringValue,Mode=OneWay}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button x:Name="CreateRentalTransactionButton" Margin="10,725,0,0" VerticalAlignment="Top"
+                Height="70" Width="165" Click="CreateRentalTransactionButton_Click">
+            <TextBlock Text="Create Rental Transaction" TextWrapping="Wrap" TextAlignment="Center"
+                       HorizontalAlignment="Left" Width="83" />
+        </Button>
+        <Button x:Name="LogoutButton" Content="Logout" Margin="520,8,0,0" VerticalAlignment="Top" Width="70"
+                Click="LogoutButton_Click" />
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="12,663,0,0" Text="CustomerId:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="12,687,0,0" Text="{Binding Cost, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="94,660,0,0" Text="{Binding CustomerId, Mode=TwoWay}" VerticalAlignment="Top" Width="210"/>
+    </Grid>
+</Page>
