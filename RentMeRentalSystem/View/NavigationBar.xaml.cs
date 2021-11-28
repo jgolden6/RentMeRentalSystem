@@ -27,7 +27,8 @@ namespace RentMeRentalSystem.View
             ("MemberUpdate", typeof(MemberUpdate)),
             ("MemberSearch", typeof(MemberSearch)),
             ("MemberRegistration", typeof(MemberRegistration)),
-            ("Inventory", typeof(InventoryMenu))
+            ("Inventory", typeof(InventoryMenu)),
+            ("Query", typeof(AdminQueryMenu))
         };
 
         #endregion
