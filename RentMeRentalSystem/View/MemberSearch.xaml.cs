@@ -1,4 +1,6 @@
-﻿using RentMeRentalSystem.DAL;
+﻿using MySql.Data.MySqlClient;
+using RentMeRentalSystem.DAL;
+using RentMeRentalSystem.Model;
 using RentMeRentalSystem.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -33,12 +35,23 @@ namespace RentMeRentalSystem.View
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            ResetDataRows();
-            var customerData = DataAccess.SearchForCustomer(SearchCriteriaComboBox.SelectionBoxItem.ToString(), SearchInformationTextBox.Text);
-            foreach (string dataLine in customerData)
+            MemberInfoDataGrid.ItemsSource = null;
+            ErrorTextBlock.Text = "";
+
+            try
             {
-                MemberInformationGridView.Items.Add(dataLine);
+                DataGridFiller.FillDataGrid(DataAccess.SearchForCustomer(SearchCriteriaComboBox.SelectionBoxItem.ToString(), 
+                                            SearchInformationTextBox.Text), MemberInfoDataGrid);
             }
+            catch (MySqlException)
+            {
+                ErrorTextBlock.Text = "Invalid search.";
+            }
+            catch (IndexOutOfRangeException)
+            {
+                ErrorTextBlock.Text = "Enter first and last name.";
+            }
+
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -50,23 +63,6 @@ namespace RentMeRentalSystem.View
         {
             CurrentUser.Logout();
             this.Frame.Navigate(typeof(LoginMenu));
-        }
-
-        private void ResetDataRows()
-        {
-            MemberInformationGridView.Items.Clear();
-            MemberInformationGridView.Items.Add("First Name");
-            MemberInformationGridView.Items.Add("Last Name");
-            MemberInformationGridView.Items.Add("ID");
-            MemberInformationGridView.Items.Add("Gender");
-            MemberInformationGridView.Items.Add("Birthdate");
-            MemberInformationGridView.Items.Add("Phone Number");
-            MemberInformationGridView.Items.Add("Address 1");
-            MemberInformationGridView.Items.Add("Address 2");
-            MemberInformationGridView.Items.Add("Zip Code");
-            MemberInformationGridView.Items.Add("City");
-            MemberInformationGridView.Items.Add("State");
-            MemberInformationGridView.Items.Add("Registration Date");
         }
     }
 }
