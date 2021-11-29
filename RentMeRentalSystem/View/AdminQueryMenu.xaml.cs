@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using MySql.Data.MySqlClient;
 using RentMeRentalSystem.Model;
 using RentMeRentalSystem.ViewModel;
 using System;
@@ -36,29 +37,18 @@ namespace RentMeRentalSystem.View
 
         private void InputQueryButton_Click(object sender, RoutedEventArgs e)
         {
-            FillDataGrid(DataAccess.PoseQuery(QueryTextBox.Text), QueryDataGrid);
-        }
+            QueryDataGrid.ItemsSource = null;
+            QueryErrorTextBlock.Text = "";
 
-        public static void FillDataGrid(DataTable table, DataGrid grid)
-        {
-            grid.Columns.Clear();
-            grid.AutoGenerateColumns = false;
-            for (int i = 0; i < table.Columns.Count; i++)
+            try
             {
-                grid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
+                DataGridFiller.FillDataGrid(DataAccess.PoseQuery(QueryTextBox.Text), QueryDataGrid);
             }
-
-            var collection = new ObservableCollection<object>();
-            foreach (DataRow row in table.Rows)
+            catch (MySqlException)
             {
-                collection.Add(row.ItemArray);
+                QueryErrorTextBlock.Text = "Invalid query.";
             }
-
-            grid.ItemsSource = collection;
+            
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

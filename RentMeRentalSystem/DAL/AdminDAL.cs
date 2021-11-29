@@ -18,14 +18,7 @@ namespace RentMeRentalSystem.Model
 
             using (var da = new MySqlDataAdapter(query, Connection.connectionString))
             {
-                try
-                {
-                    da.Fill(table);
-                }
-                catch (MySqlException e)
-                {
-                    System.Diagnostics.Debug.WriteLine(e);
-                }
+                da.Fill(table);
             }
 
             return table;

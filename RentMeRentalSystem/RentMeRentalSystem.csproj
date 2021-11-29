@@ -135,7 +135,8 @@
     <Compile Include="DAL\RentalItemDAL.cs" />
     <Compile Include="DAL\RentalTransactionDAL.cs" />
     <Compile Include="DAL\SecurePasswordHasher.cs" />
-    <Compile Include="Model\AdminDAL.cs" />
+    <Compile Include="DAL\AdminDAL.cs" />
+    <Compile Include="Model\DataGridFiller.cs" />
     <Compile Include="Model\Furniture.cs" />
     <Compile Include="Model\RentalItem.cs" />
     <Compile Include="Model\RentalTransaction.cs" />

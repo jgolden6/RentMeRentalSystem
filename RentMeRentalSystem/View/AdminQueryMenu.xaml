@@ -29,6 +29,7 @@
         <TextBox x:Name="QueryTextBox" HorizontalAlignment="Left" Margin="46,132,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="577" PlaceholderText="Input query"/>
         <Button x:Name="InputQueryButton" Content="Input Query" Margin="715,133,0,0" VerticalAlignment="Top" Width="142" Click="InputQueryButton_Click"/>
         <Button x:Name="LogoutButton" Content="Logout" Margin="870,10,0,0" VerticalAlignment="Top" Width="70" Click="LogoutButton_Click"/>
+        <TextBlock x:Name="QueryErrorTextBlock" HorizontalAlignment="Left" Margin="46,179,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="577" FocusVisualPrimaryBrush="White" Foreground="Red"/>
 
     </Grid>
 </Page>
