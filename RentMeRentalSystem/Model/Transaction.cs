@@ -2,7 +2,7 @@
 
 namespace RentMeRentalSystem.Model
 {
-    public abstract class Transaction
+    public class Transaction
     {
         #region Properties
 
@@ -15,6 +15,10 @@ namespace RentMeRentalSystem.Model
         public double Fee { get; set; }
 
         public DateTime DueDate { get; set; }
+
+        public DateTime TransactionDate { get; set; }
+
+        public TransactionType Type { get; set; }
 
         #endregion
     }

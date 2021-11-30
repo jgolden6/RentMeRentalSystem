@@ -56,8 +56,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Width="585">
-                        <CheckBox x:Name="listItemCheckBox" IsChecked="{Binding is_checked,Mode=OneWay}"></CheckBox>
-                        <ComboBox x:Name="listItemComboBox" Margin="0 0 50 0" ItemsSource="{Binding QuantityList, Mode=OneWay}"/>
+                        <CheckBox x:Name="listItemCheckBox" Checked="ListItemCheckBox_Checked" Unchecked="ListItemCheckBox_Unchecked" IsChecked="{Binding IsChecked,Mode=TwoWay}"/>
+                        <ComboBox x:Name="listItemComboBox" SelectionChanged="ListItemComboBox_SelectionChanged" SelectedItem="{Binding SelectedQuantity, Mode=TwoWay}" IsEditable="false" Margin="0 0 50 0" ItemsSource="{Binding QuantityList, Mode=OneWay}"/>
                         <TextBlock x:Name="listTextCheckBox" Text="{Binding StringValue,Mode=OneWay}"/>
                     </StackPanel>
                 </DataTemplate>
@@ -71,9 +71,17 @@
         </Button>
         <Button x:Name="LogoutButton" Content="Logout" Margin="520,8,0,0" VerticalAlignment="Top" Width="70"
                 Click="LogoutButton_Click" />
-        <TextBlock HorizontalAlignment="Left" Height="26" Margin="12,663,0,0" Text="CustomerId:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="Customer" HorizontalAlignment="Left" Height="26" Margin="12,652,0,0" Text="CustomerId:" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock HorizontalAlignment="Left" Height="26" Margin="12,687,0,0" Text="{Binding Cost, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="94,660,0,0" Text="{Binding CustomerId, Mode=TwoWay}" VerticalAlignment="Top" Width="210"/>
+        <TextBlock  x:Name="Cost" HorizontalAlignment="Left" Height="26" Margin="12,687,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="CustomerLookupTextBox" HorizontalAlignment="Left" Margin="94,649,0,0" VerticalAlignment="Top" Width="210"/>
+        
+        <CalendarDatePicker x:Name="RentalDatePicker" Date="{Binding DueDate}" DateChanged="RentalDatePicker_DateChanged" Margin="392,704,0,0" VerticalAlignment="Top" Width="199"/>
+        <TextBlock HorizontalAlignment="Left" Height="26"  Margin="392,670,0,0" Text="Select Due Date:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Margin="318,646,0,0" VerticalAlignment="Top" Width="40" x:Name="RetrieveCustomerButton" Click="RetrieveCustomerButton_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;" Width="20" Height="20" VerticalAlignment="Bottom" />
+        </Button>
+        <Button Content="Clear" Margin="318,646,0,0" VerticalAlignment="Top" Width="55" Visibility="Collapsed" IsEnabled="False" x:Name="ResetCustomerButton" Click="RetrieveCustomerButton_Click"/>
+           
     </Grid>
 </Page>

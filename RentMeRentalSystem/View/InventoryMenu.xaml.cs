@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using RentMeRentalSystem.DAL;
@@ -31,6 +32,9 @@ namespace RentMeRentalSystem.View
             this.InitializeComponent();
             this.viewModel = new InventoryMenuViewModel();
             this.DataContext = this.viewModel;
+            this.Cost.Text = this.viewModel.Cost;
+            this.RentalDatePicker.Date = new DateTimeOffset(DateTime.Now.AddDays(2));
+            this.RentalDatePicker.MinDate = new DateTimeOffset(DateTime.Now.AddDays(2));
         }
 
         #endregion
@@ -87,7 +91,34 @@ namespace RentMeRentalSystem.View
 
         private void CreateRentalTransactionButton_Click(object sender, RoutedEventArgs e)
         {
-            // throw new NotImplementedException();
+            // for(Furniture items in Fut) TODO 
+        }
+
+        private void ListItemCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.setPreviewCost();
+        }
+
+    private void ListItemCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.setPreviewCost();
+        }
+
+        private void ListItemComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.setPreviewCost();
+        }
+
+        private void setPreviewCost()
+        {
+            this.viewModel.CalculateTransactionCost();
+            this.Cost.Text = this.viewModel.Cost;
+            if (this.Cost.Text.Equals("Cost: $0"))
+            {
+                this.CreateRentalTransactionButton.IsEnabled = false;
+            }else {
+                this.CreateRentalTransactionButton.IsEnabled = false;
+            }
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -119,6 +150,24 @@ namespace RentMeRentalSystem.View
             this.CategoryComboBox.IsEnabled = true;
             this.StyleComboBox.IsEnabled = true;
             this.ErrorText.Text = string.Empty;
+        }
+
+        private void RentalDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            bool hasItems = this.FurnitureListView.Items != null;
+            if (this.RentalDatePicker.Date < DateTime.Now.Date)
+            {
+                this.ErrorText.Text = "Invalid Due Date. Due Date cannot be before today.";
+                this.CreateRentalTransactionButton.IsEnabled = false;
+                this.FurnitureListView.IsEnabled = false;
+            }
+            else
+            {
+                this.ErrorText.Text = string.Empty;
+                this.viewModel.DueDate = this.RentalDatePicker.Date;
+                this.setPreviewCost();
+                this.FurnitureListView.IsEnabled = true;
+            }
         }
 
 
@@ -154,5 +203,10 @@ namespace RentMeRentalSystem.View
         }
 
         #endregion
+
+        private void RetrieveCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

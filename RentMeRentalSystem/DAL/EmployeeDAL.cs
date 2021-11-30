@@ -13,15 +13,14 @@ namespace RentMeRentalSystem.DAL
 
         public Employee Authenticate(string username, string password) 
         {
-            if (!CheckPassword(username, password))
+            if (!this.CheckPassword(username, password))
             {
                 return null;
             }
 
             using var conn = new MySqlConnection(Connection.connectionString);
             conn.Open();
-            string ordinals = "fname, lname, employeeId";
-            var query = $"select {ordinals} from employee where username = @username";
+            var query = "select fname, lname, employeeId from employee where username = @username";
             using var cmd = new MySqlCommand(query, conn);
 
             cmd.Parameters.Add("@username", MySqlDbType.VarChar);
