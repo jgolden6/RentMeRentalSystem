@@ -81,7 +81,7 @@
         <Button Margin="318,646,0,0" VerticalAlignment="Top" Width="40" x:Name="RetrieveCustomerButton" Click="RetrieveCustomerButton_Click">
             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;" Width="20" Height="20" VerticalAlignment="Bottom" />
         </Button>
-        <Button Content="Clear" Margin="318,646,0,0" VerticalAlignment="Top" Width="55" Visibility="Collapsed" IsEnabled="False" x:Name="ResetCustomerButton" Click="RetrieveCustomerButton_Click"/>
+        <Button Content="Clear" Margin="318,646,0,0" VerticalAlignment="Top" Width="55" Visibility="Collapsed" IsEnabled="False" x:Name="ResetCustomerButton" Click="ResetCustomerButton_Click"/>
            
     </Grid>
 </Page>

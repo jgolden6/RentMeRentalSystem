@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using MySql.Data.MySqlClient;
 using RentMeRentalSystem.DAL;
 using RentMeRentalSystem.Model;
 using RentMeRentalSystem.ViewModel;
@@ -202,11 +203,34 @@ namespace RentMeRentalSystem.View
             this.Frame.Navigate(typeof(LoginMenu));
         }
 
-        #endregion
-
         private void RetrieveCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.viewModel.CustomerId = this.CustomerLookupTextBox.Text;
+                this.Customer.Text = this.viewModel.RetrieveCustomer();
+                this.CustomerLookupTextBox.IsEnabled = false;
+                this.CustomerLookupTextBox.Visibility = Visibility.Collapsed;
+                this.RetrieveCustomerButton.IsEnabled = false;
+                this.RetrieveCustomerButton.Visibility = Visibility.Collapsed;
+                this.ResetCustomerButton.IsEnabled = true;
+                this.ResetCustomerButton.Visibility = Visibility.Visible;
+            }catch (MySqlException)
+            {
+                this.ErrorText.Text = "Invalid search.";
+            }
         }
+
+        private void ResetCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Customer.Text = "CustomerId:";
+            this.CustomerLookupTextBox.IsEnabled = true;
+            this.CustomerLookupTextBox.Visibility = Visibility.Visible;
+            this.RetrieveCustomerButton.IsEnabled = true;
+            this.RetrieveCustomerButton.Visibility = Visibility.Visible;
+            this.ResetCustomerButton.IsEnabled = false;
+            this.ResetCustomerButton.Visibility = Visibility.Collapsed;
+        }
+        #endregion
     }
 }

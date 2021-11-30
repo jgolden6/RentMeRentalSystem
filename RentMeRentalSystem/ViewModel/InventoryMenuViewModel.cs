@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Runtime.Serialization;
 using Windows.Data.Json;
 using RentMeRentalSystem.Annotations;
@@ -19,7 +20,9 @@ namespace RentMeRentalSystem.ViewModel
 
         private Dictionary<string, FurnitureListItem> furnitureItems;
 
-        private readonly FurnitureDAL dataAccess = new();
+        private readonly FurnitureDAL furnitureDataAccess = new();
+
+        private readonly CustomerDAL customerDataAccess = new();
 
         private readonly RentalTransactionDAL rentalDataAccess = new();
 
@@ -83,8 +86,8 @@ namespace RentMeRentalSystem.ViewModel
         public InventoryMenuViewModel()
         {
             this.ResetFurnitureItems();
-            this.Categories = this.dataAccess.RetrieveCategories();
-            this.Styles = this.dataAccess.RetrieveStyles();
+            this.Categories = this.furnitureDataAccess.RetrieveCategories();
+            this.Styles = this.furnitureDataAccess.RetrieveStyles();
         }
 
         #endregion
@@ -102,11 +105,20 @@ namespace RentMeRentalSystem.ViewModel
             }
         }
 
-        public void CreateRentalTransaction()
+        // public void CreateRentalTransaction()
+        // {
+        //     foreach(Furniture item in  this.FurnitureItems) {
+        //         if ()
+        //     }
+        // }
+
+
+        public string RetrieveCustomer()
         {
-            foreach(Furniture item in  this.FurnitureItems) {
-                if ()
-            }
+            //TODO use actual method
+            DataTable customer = new();
+            //DataTable customer = this.customerDataAccess.SearchForCustomer("Member ID", this.CustomerId);
+            return customer.Rows[0].ToString();
         }
 
         public double CalculateTransactionCost()
@@ -140,7 +152,7 @@ namespace RentMeRentalSystem.ViewModel
         public void RetrieveFurnitureById(string furnitureId)
         {
             var retrievedFurnitureItems = this.convertListFurnitureItemsToListFurnitureListItems(
-                this.dataAccess.RetrieveSingleFurnitureItemById(int.Parse(furnitureId)));
+                this.furnitureDataAccess.RetrieveSingleFurnitureItemById(int.Parse(furnitureId)));
             this.FurnitureItems = retrievedFurnitureItems;
         }
 
@@ -148,7 +160,7 @@ namespace RentMeRentalSystem.ViewModel
         {
             var retrievedFurnitureItems =
                 this.convertListFurnitureItemsToListFurnitureListItems(
-                    this.dataAccess.RetrieveFurnitureItemsByCategory(category));
+                    this.furnitureDataAccess.RetrieveFurnitureItemsByCategory(category));
             this.FurnitureItems = retrievedFurnitureItems;
         }
 
@@ -160,7 +172,7 @@ namespace RentMeRentalSystem.ViewModel
         {
             var retrievedFurnitureItems =
                 this.convertListFurnitureItemsToListFurnitureListItems(
-                    this.dataAccess.RetrieveFurnitureItemsByStyle(style));
+                    this.furnitureDataAccess.RetrieveFurnitureItemsByStyle(style));
             this.FurnitureItems = retrievedFurnitureItems;
         }
 
@@ -170,7 +182,7 @@ namespace RentMeRentalSystem.ViewModel
         public void ResetFurnitureItems()
         {
             var retrievedFurnitureItems =
-                this.convertListFurnitureItemsToListFurnitureListItems(this.dataAccess.RetrieveFurnitureItems());
+                this.convertListFurnitureItemsToListFurnitureListItems(this.furnitureDataAccess.RetrieveFurnitureItems());
             this.FurnitureItems = retrievedFurnitureItems;
             this.Cost = "Cost: $0";
         }
