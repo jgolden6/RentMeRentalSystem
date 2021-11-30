@@ -1,9 +1,11 @@
-﻿using MySql.Data.MySqlClient;
-using RentMeRentalSystem.DAL;
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using MySql.Data.MySqlClient;
 using RentMeRentalSystem.Model;
 using RentMeRentalSystem.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,39 +26,29 @@ namespace RentMeRentalSystem.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MemberSearch : Page
+    public sealed partial class AdminQueryMenu : Page
     {
-        CustomerDAL DataAccess = new();
+        AdminDAL DataAccess = new AdminDAL();
 
-        public MemberSearch()
+        public AdminQueryMenu()
         {
             this.InitializeComponent();
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        private void InputQueryButton_Click(object sender, RoutedEventArgs e)
         {
-            MemberInfoDataGrid.ItemsSource = null;
-            ErrorTextBlock.Text = "";
+            QueryDataGrid.ItemsSource = null;
+            QueryErrorTextBlock.Text = "";
 
             try
             {
-                DataGridFiller.FillDataGrid(DataAccess.SearchForCustomer(SearchCriteriaComboBox.SelectionBoxItem.ToString(), 
-                                            SearchInformationTextBox.Text), MemberInfoDataGrid);
+                DataGridFiller.FillDataGrid(DataAccess.PoseQuery(QueryTextBox.Text), QueryDataGrid);
             }
             catch (MySqlException)
             {
-                ErrorTextBlock.Text = "Invalid search.";
+                QueryErrorTextBlock.Text = "Invalid query.";
             }
-            catch (IndexOutOfRangeException)
-            {
-                ErrorTextBlock.Text = "Enter first and last name.";
-            }
-
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MemberMenu));
+            
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -135,10 +135,12 @@
     <Compile Include="DAL\RentalItemDAL.cs" />
     <Compile Include="DAL\RentalTransactionDAL.cs" />
     <Compile Include="DAL\SecurePasswordHasher.cs" />
+    <Compile Include="DAL\AdminDAL.cs" />
+    <Compile Include="Model\DataGridFiller.cs" />
     <Compile Include="Model\Furniture.cs" />
     <Compile Include="Model\RentalItem.cs" />
+    <Compile Include="Model\RentalTransaction.cs" />
     <Compile Include="Model\Transaction.cs" />
-    <Compile Include="Model\TransactionType.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\CurrentUser.cs" />
     <Compile Include="Model\Customer.cs" />
@@ -147,7 +149,9 @@
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\USStates.cs" />
     <Compile Include="ViewModel\InventoryMenuViewModel.cs" />
-    <Compile Include="View\FurnitureListItem.cs" />
+    <Compile Include="View\AdminQueryMenu.xaml.cs">
+      <DependentUpon>AdminQueryMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\InventoryMenu.xaml.cs">
       <DependentUpon>InventoryMenu.xaml</DependentUpon>
     </Compile>
@@ -192,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AdminQueryMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\InventoryMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,6 +235,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
+      <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="MySql.Data">
       <Version>8.0.27</Version>

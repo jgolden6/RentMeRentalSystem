@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RentMeRentalSystem.DAL
 {
+    //Citation: Christian Gollhardt from StackOverflow
     public static class SecurePasswordHasher
     {
         /// <summary>

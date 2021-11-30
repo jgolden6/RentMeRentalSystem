@@ -40,6 +40,15 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC59;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Content="Query" Tag="Query">
+                    <ToolTipService.ToolTip>
+                        <ToolTip Content="Pose Query"
+                                 HorizontalOffset="20" VerticalOffset="30" />
+                    </ToolTipService.ToolTip>
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE71F;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Tag="MemberRegistration" Visibility="Collapsed" />
                 <NavigationViewItem Tag="MemberSearch" Visibility="Collapsed" />
                 <NavigationViewItem Tag="MemberUpdate" Visibility="Collapsed" />

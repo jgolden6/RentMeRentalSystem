@@ -60,25 +60,42 @@ namespace RentMeRentalSystem.View
                 if (customer.IdNumber.Equals(CurrentUser.SelectedMemberId))
                 {
                     CustomerToUpdate = customer;
-                    NameTextBox.Text = customer.FullName;
+                    FNameTextBox.Text = customer.Fname;
+                    LNameTextBox.Text = customer.Lname;
+                    GenderComboBox.SelectedIndex = GetGenderComboBoxIndex(customer.Gender.ToString());
                     PhoneNumberTextBox.Text = customer.PhoneNumber;
                     AddressTextBox.Text = customer.AddressLine1;
                     AddressLine2TextBox.Text = customer.AddressLine2;
                     CityTextBox.Text = customer.City;
                     StateComboBox.SelectedValue = customer.State;
                     ZipCodeTextBox.Text = customer.Zipcode;
+                    BirthdayDatePicker.Date = customer.Birthdate;
                 }
             }
         }
 
         private void UpdateCustomerInformation()
         {
+            CustomerToUpdate.Fname = FNameTextBox.Text;
+            CustomerToUpdate.Lname = LNameTextBox.Text;
+            CustomerToUpdate.Gender = (Gender)Enum.Parse(typeof(Gender), GenderComboBox.SelectionBoxItem.ToString());
             CustomerToUpdate.PhoneNumber = PhoneNumberTextBox.Text;
             CustomerToUpdate.AddressLine1 = AddressTextBox.Text;
             CustomerToUpdate.AddressLine2 = AddressLine2TextBox.Text;
             CustomerToUpdate.City = CityTextBox.Text;
             CustomerToUpdate.State = StateComboBox.SelectionBoxItem.ToString();
             CustomerToUpdate.Zipcode = ZipCodeTextBox.Text;
+            CustomerToUpdate.Birthdate = BirthdayDatePicker.Date.DateTime;
+        }
+
+        private int GetGenderComboBoxIndex(string gender)
+        {
+            var genderDict = new Dictionary<string, int>();
+            genderDict.Add("Male", 0);
+            genderDict.Add("Female", 1);
+            genderDict.Add("Other", 2);
+
+            return genderDict[gender];
         }
 
         private void PopulateStateComboBox()

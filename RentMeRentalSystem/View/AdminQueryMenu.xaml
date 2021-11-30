@@ -1,0 +1,35 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RentMeRentalSystem.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls" xmlns:viewModel="using:RentMeRentalSystem.ViewModel"
+    x:Class="RentMeRentalSystem.View.AdminQueryMenu"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Width="950"
+    Height="800">
+
+    <Page.DataContext>
+        <viewModel:CurrentUser />
+    </Page.DataContext>
+
+    <Grid>
+        <TextBlock x:Name="CurrentUsername" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Text="{Binding Path=Username, Mode=OneWay}" TextWrapping="Wrap" Height="26"
+                   Margin="12,10,416,764"
+                   RenderTransformOrigin="0.631,0.962" />
+        <TextBlock x:Name="CurrentUserId" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right"
+                   Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,100,0" />
+        <TextBlock x:Name="CurrentUserFullName" TextAlignment="Left" VerticalAlignment="Top"
+                   HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap"
+                   Height="26" Margin="0,10,200,0" />
+        <Custom:DataGrid x:Name="QueryDataGrid" HorizontalAlignment="Center" Height="579" Margin="0,211,0,0" VerticalAlignment="Top" Width="930"/>
+        <TextBox x:Name="QueryTextBox" HorizontalAlignment="Left" Margin="46,132,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="577" PlaceholderText="Input query"/>
+        <Button x:Name="InputQueryButton" Content="Input Query" Margin="715,133,0,0" VerticalAlignment="Top" Width="142" Click="InputQueryButton_Click"/>
+        <Button x:Name="LogoutButton" Content="Logout" Margin="870,10,0,0" VerticalAlignment="Top" Width="70" Click="LogoutButton_Click"/>
+        <TextBlock x:Name="QueryErrorTextBlock" HorizontalAlignment="Left" Margin="46,179,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="577" FocusVisualPrimaryBrush="White" Foreground="Red"/>
+
+    </Grid>
+</Page>
