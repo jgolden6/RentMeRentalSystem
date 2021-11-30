@@ -38,6 +38,7 @@ namespace RentMeRentalSystem.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@rental", rentalBase.GetArray().ToString());
                     cmd.Parameters.AddWithValue("@rental_items", rentalItems.GetArray().ToString());
+                    cmd.Parameters.AddWithValue("@rental_date", DateTimeOffset.Now.Date.ToString("yyyy-MM-dd"));
                     MySqlTransaction myTrans = conn.BeginTransaction();
 
                     try
@@ -107,10 +108,12 @@ namespace RentMeRentalSystem.DAL
             {
                 conn.Open();
                 using (var cmd =
-                    new MySqlCommand("call calculate_rental_transaction_cost(@items)", conn))
+                    new MySqlCommand("call calculate_rental_transaction_cost(@items, @rental_date)", conn))
                 {
                     cmd.Parameters.Add("@items", MySqlDbType.Text);
                     cmd.Parameters["@items"].Value = items.GetArray().ToString();
+                    cmd.Parameters.Add("@rental_date", MySqlDbType.Date);
+                    cmd.Parameters["@rental_date"].Value = DateTimeOffset.Now.Date.ToString("yyyy-MM-dd");
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
