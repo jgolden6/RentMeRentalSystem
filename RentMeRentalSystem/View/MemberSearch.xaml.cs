@@ -40,8 +40,9 @@ namespace RentMeRentalSystem.View
 
             try
             {
-                DataGridFiller.FillDataGrid(DataAccess.SearchForCustomer(SearchCriteriaComboBox.SelectionBoxItem.ToString(), 
-                                            SearchInformationTextBox.Text), MemberInfoDataGrid);
+                DataGridFiller.FillDataGrid(DataAccess.SearchForCustomer(
+                    SearchCriteriaComboBox.SelectionBoxItem.ToString(),
+                    SearchInformationTextBox.Text), MemberInfoDataGrid);
             }
             catch (MySqlException)
             {
@@ -50,6 +51,10 @@ namespace RentMeRentalSystem.View
             catch (IndexOutOfRangeException)
             {
                 ErrorTextBlock.Text = "Enter first and last name.";
+            }
+            catch (Exception)
+            {
+                ErrorTextBlock.Text = "Invalid search.";
             }
 
         }

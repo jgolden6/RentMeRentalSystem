@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Transactions;
 using Windows.Data.Json;
 using DBAccess.DAL;
 using MySql.Data.MySqlClient;
 using RentMeRentalSystem.Model;
+using Transaction = RentMeRentalSystem.Model.Transaction;
 
 namespace RentMeRentalSystem.DAL
 {
@@ -14,17 +16,83 @@ namespace RentMeRentalSystem.DAL
     {
         #region Methods
 
-        public bool CreateRentalTransaction(JsonArray items)
+        public bool CreateRentalTransaction(JsonArray rentalBase, JsonArray rentalItems)
         {
-            using var conn = new MySqlConnection(Connection.connectionString);
-            var query = "call create_transaction(@items)";
-            using var cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.Add("@items", MySqlDbType.Blob);
-            cmd.Parameters["@items"].Value = items;
-            //TODO remember to subtract from quantity 
-            var numberOfRowsEffected = cmd.ExecuteNonQuery();
-            var causedEffect = numberOfRowsEffected > 0;
-            return causedEffect;
+            var success = this.createRentalTransaction(rentalBase, rentalItems);
+            return success;
+        }
+
+        private bool createRentalTransaction(JsonArray rentalBase, JsonArray rentalItems)
+        {
+            if (!rentalBase.GetArray().Any() || !rentalItems.GetArray().Any())
+            {
+                return false;
+            }
+
+            using (var conn = new MySqlConnection(Connection.connectionString))
+            {
+                conn.Open();
+                using (var cmd =
+                    new MySqlCommand("create_rental_transaction", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@rental", rentalBase.GetArray().ToString());
+                    cmd.Parameters.AddWithValue("@rental_items", rentalItems.GetArray().ToString());
+                    MySqlTransaction myTrans = conn.BeginTransaction();
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        myTrans.Commit();
+                        Console.WriteLine("Transaction Succeeded");
+                        return true;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Console.WriteLine("Transaction Failed");
+                        Console.WriteLine(ex.Message);
+                        try
+                        {
+                            myTrans.Rollback();
+                            Console.WriteLine("Transaction rolled back");
+                        }
+                        catch (MySqlException exi)
+                        {
+                            Console.WriteLine("Transaction Not Rolled");
+                            Console.WriteLine(exi.Message);
+                        }
+                    }
+
+                    return false;
+
+                }
+            }
+        }
+
+        public void UpdateFurnitureQuantities()
+        {
+            using (var conn = new MySqlConnection(Connection.connectionString))
+            {
+                conn.Open();
+                using (var cmd =
+                    new MySqlCommand("call update_furniture_quantities()", conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public DataTable GetRentalTransactionInformation()
+        {
+            var table = new DataTable();
+            var query =
+                "SELECT ri.rentalId, f.furnitureId, f.categoryName, f.styleName, f.daily_rental_rate, ri.quantity FROM furniture f, rental_item ri WHERE f.furnitureId = ri.furnitureId AND ri.rentalId =( SELECT MAX(rentalId) FROM rental_item )";
+            using (var da = new MySqlDataAdapter(query, Connection.connectionString))
+            {
+                da.Fill(table);
+            }
+
+            return table;
         }
 
         public double CalculateRentalTransactionCost(JsonArray items)
@@ -34,6 +102,7 @@ namespace RentMeRentalSystem.DAL
             {
                 return 0.0;
             }
+
             using (var conn = new MySqlConnection(Connection.connectionString))
             {
                 conn.Open();
@@ -44,13 +113,12 @@ namespace RentMeRentalSystem.DAL
                     cmd.Parameters["@items"].Value = items.GetArray().ToString();
                     using (var reader = cmd.ExecuteReader())
                     {
-                        //var costOrdinal = reader.GetOrdinal("cost");
-                       
                         while (reader.Read())
                         {
                             cost = reader.GetFieldValueCheckNull<decimal>(0);
                         }
                     }
+
                     return decimal.ToDouble(cost);
                 }
             }

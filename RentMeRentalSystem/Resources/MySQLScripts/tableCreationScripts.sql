@@ -269,32 +269,131 @@ DROP
 PROCEDURE IF EXISTS calculate_rental_transaction_cost;
 DELIMITER
     $
-CREATE PROCEDURE calculate_rental_transaction_cost(
-    items TEXT,
-    OUT cost DECIMAL(9, 2)
-)
+CREATE PROCEDURE calculate_rental_transaction_cost(IN items TEXT)
 BEGIN
-    SELECT
-        SUM(
-            f.daily_rental_rate * qty * TIMESTAMPDIFF(DAY, NOW(), due_date))
-        INTO cost
-    FROM
-        furniture f,
-        JSON_TABLE(
-            items,
-            "$[*]" COLUMNS(
-                furitureId INTEGER PATH "$.id",
-                qty INTEGER PATH "$.qty",
-                due_date DATE PATH "$.dueDate"
-            )
-        ) AS pre_rental_items
-    WHERE
-        f.furnitureId = furitureId ;
-        END
+    DECLARE
+        cost DECIMAL(9, 2) ;
+    SET
+        cost =(
+        SELECT
+            SUM(
+                f.daily_rental_rate * qty * TIMESTAMPDIFF(DAY, NOW(), due_date))
+            FROM
+                furniture f,
+                JSON_TABLE(
+                    items,
+                    "$[*]" COLUMNS(
+                        furitureId INTEGER PATH "$.id",
+                        qty INTEGER PATH "$.qty",
+                        due_date DATE PATH "$.dueDate"
+                    )
+                ) AS pre_rental_items
+            WHERE
+                f.furnitureId = furitureId
+            ) ;
+        SELECT
+            cost ;
+    END
+
 CALL
     calculate_rental_transaction_cost(
-        "[{\"id\":10000, \"qty\":5, \"dueDate\": \"2021-12-11\"}, {\"id\":10001, \"qty\":3, \"dueDate\": \"2021-12-11\"}, {\"id\":10004, \"qty\":6, \"dueDate\": \"2021-12-11\"}]",
-        @cost
-    );
+        "[{\"id\":10000, \"qty\":5, \"dueDate\": \"2021-12-11\"}, {\"id\":10001, \"qty\":3, \"dueDate\": \"2021-12-11\"}, {\"id\":10004, \"qty\":6, \"dueDate\": \"2021-12-11\"}]");
+
+        DROP
+DROP
+PROCEDURE IF EXISTS create_rental_transaction
+DELIMITER
+    $
+CREATE PROCEDURE create_rental_transaction(
+    IN rental TEXT,
+    IN rental_items TEXT
+)
+BEGIN
+    DECLARE EXIT
+HANDLER FOR SQLEXCEPTION
+BEGIN
+    ROLLBACK
+        ;
+    SELECT
+        "rolled back" ;
+END ;
+START TRANSACTION
+    ;
+INSERT INTO `transaction`(
+    employeeId,
+    customerId,
+    fee,
+    dueDate
+)
 SELECT
-    @cost;
+    employeeId,
+    customerId,
+    fee,
+    dueDate
+FROM
+    JSON_TABLE(
+        rental,
+        "$[*]" COLUMNS(
+            employeeId INTEGER PATH "$.employeeId",
+            customerId INTEGER PATH "$.customerId",
+            fee DECIMAL(9, 2) PATH "$.fee",
+            dueDate DATE PATH "$.transactionDueDate"
+        )
+    ) AS a_rental_transaction ;
+INSERT INTO rental_transaction(rentalId, rentalDate)
+SELECT
+    LAST_INSERT_ID(), NOW() ;
+INSERT INTO rental_item(
+    rentalId,
+    furnitureId,
+    quantity
+)
+SELECT
+    LAST_INSERT_ID(), furnitureId, qty
+FROM
+    JSON_TABLE(
+        rental_items,
+        "$[*]" COLUMNS(
+            furnitureId INTEGER PATH "$.furnitureId",
+            qty INTEGER PATH "$.qty"
+        )
+    ) AS current_rental_items ;
+
+COMMIT
+    ;
+    END
+
+CALL
+    create_rental_transaction(
+        "[{\"employeeId\":1000000, \"customerId\":102, \"fee\": 234.20, \"transactionDueDate\": \"2021-12-11\"}]",
+        "[{\"furnitureId\":10000, \"qty\":5}, {\"furnitureId\":10001, \"qty\":3}, {\"furnitureId\":10004, \"qty\":6}]"
+    )
+
+DROP
+PROCEDURE IF EXISTS update_furniture_quanities;
+DELIMITER
+    $
+CREATE PROCEDURE update_furniture_quanities()
+BEGIN
+    UPDATE
+        furniture, rental_item
+    SET
+        furniture.quantity = furniture.quantity - rental_item.quantity
+    WHERE
+        rental_item.furnitureId = furniture.furnitureId AND rental_item.rentalId =( SELECT MAX(rentalId) FROM rental_item ) ;
+END
+CALL
+    update_furniture_quanities()
+
+SELECT
+    ri.rentalId,
+    f.furnitureId,
+    f.categoryName,
+    f.styleName,
+    f.daily_rental_rate,
+    ri.quantity
+FROM
+    furniture f,
+    rental_item ri
+WHERE
+    f.furnitureId = ri.furnitureId AND ri.rentalId =( SELECT MAX(rentalId) FROM rental_item );

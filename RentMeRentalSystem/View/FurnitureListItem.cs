@@ -10,7 +10,7 @@ namespace RentMeRentalSystem.View
 
         public int SelectedQuantity { get; set; }
 
-        public List<int> QuantityList => Enumerable.Range(1, this.Quantity).ToList();
+        public List<int> QuantityList => Enumerable.Range(0, this.Quantity + 1).ToList();
 
         public string StringValue => $"{FurnitureId}, {CategoryName}, {StyleName}, {DailyRentalRate}, {Quantity}";
 

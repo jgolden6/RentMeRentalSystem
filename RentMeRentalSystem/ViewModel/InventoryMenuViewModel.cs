@@ -18,6 +18,8 @@ namespace RentMeRentalSystem.ViewModel
 
         private bool selected;
 
+        private double costFee;
+
         private Dictionary<string, FurnitureListItem> furnitureItems;
 
         private readonly FurnitureDAL furnitureDataAccess = new();
@@ -29,6 +31,8 @@ namespace RentMeRentalSystem.ViewModel
         #endregion
 
         #region Properties
+
+        public DataTable TransactionInformation { get; set; }
 
         public bool Selected
         {
@@ -88,6 +92,7 @@ namespace RentMeRentalSystem.ViewModel
             this.ResetFurnitureItems();
             this.Categories = this.furnitureDataAccess.RetrieveCategories();
             this.Styles = this.furnitureDataAccess.RetrieveStyles();
+            this.Cost = "Cost: $0.00";
         }
 
         #endregion
@@ -105,28 +110,49 @@ namespace RentMeRentalSystem.ViewModel
             }
         }
 
-        // public void CreateRentalTransaction()
-        // {
-        //     foreach(Furniture item in  this.FurnitureItems) {
-        //         if ()
-        //     }
-        // }
+        public bool CreateRentalTransaction(string employeeId)
+        {
+            var rentalItems = new JsonArray();
+            foreach (var item in this.FurnitureItems)
+            {
+                if (item.SelectedQuantity != 0 && item.IsChecked)
+                {
+                    var newItem = new JsonObject();
+                    newItem.Add("furnitureId", JsonValue.CreateNumberValue(int.Parse(item.FurnitureId)));
+                    newItem.Add("qty", JsonValue.CreateNumberValue(item.SelectedQuantity));
+
+                    rentalItems.Add(newItem);
+                }
+            }
+            var rental = new JsonArray();
+            var rentalTransaction = new JsonObject();
+            rentalTransaction.Add("employeeId",  JsonValue.CreateNumberValue(int.Parse(employeeId)));
+            rentalTransaction.Add("customerId",  JsonValue.CreateNumberValue(int.Parse(this.CustomerId)));
+            rentalTransaction.Add("fee",  JsonValue.CreateNumberValue(this.costFee));
+            this.DueDate ??= DateTimeOffset.Now.AddDays(2);
+            rentalTransaction.Add("transactionDueDate", JsonValue.CreateStringValue(this.DueDate.Value.Date.ToString("yyyy-MM-dd")));
+            rental.Add(rentalTransaction);
+            var result = this.rentalDataAccess.CreateRentalTransaction(rental, rentalItems);
+            if (result)
+            {
+                this.TransactionInformation = this.rentalDataAccess.GetRentalTransactionInformation();
+                this.rentalDataAccess.UpdateFurnitureQuantities();
+            }
+            return result;
+        }
 
 
         public string RetrieveCustomer()
         {
-            //TODO use actual method
-            DataTable customer = new();
-            //DataTable customer = this.customerDataAccess.SearchForCustomer("Member ID", this.CustomerId);
-            return customer.Rows[0].ToString();
+            DataTable customer = this.customerDataAccess.SearchForCustomer("Member ID", this.CustomerId);
+            return $"{customer.Rows[0][0].ToString()} {customer.Rows[0][1].ToString()} {customer.Rows[0][2].ToString()}";
         }
 
-        public double CalculateTransactionCost()
+        public void CalculateTransactionCost()
         {
             var items = this.groupFurnitureItemsForTransaction();
-            var calculatedCost = this.rentalDataAccess.CalculateRentalTransactionCost(items);
-            this.Cost = $"Cost: ${Math.Round(calculatedCost, 2, MidpointRounding.AwayFromZero)}";
-            return calculatedCost;
+            this.costFee = this.rentalDataAccess.CalculateRentalTransactionCost(items);
+            this.Cost = $"Cost: " + Math.Round(this.costFee, 2, MidpointRounding.AwayFromZero).ToString("C2");
         }
 
         private JsonArray groupFurnitureItemsForTransaction()
@@ -139,7 +165,7 @@ namespace RentMeRentalSystem.ViewModel
                     var newItem = new JsonObject();
                     newItem.Add("id", JsonValue.CreateNumberValue(int.Parse(item.FurnitureId)));
                     newItem.Add("qty", JsonValue.CreateNumberValue(item.SelectedQuantity));
-                    this.DueDate ??= DateTimeOffset.Now;
+                    this.DueDate ??= DateTimeOffset.Now.AddDays(2);
                     newItem.Add("dueDate", JsonValue.CreateStringValue(this.DueDate.Value.Date.ToString("yyyy-MM-dd")));
 
                     items.Add(newItem);
@@ -164,6 +190,32 @@ namespace RentMeRentalSystem.ViewModel
             this.FurnitureItems = retrievedFurnitureItems;
         }
 
+        public void ResolveCheckedItemsWhenSearching(ObservableCollection<FurnitureListItem> checkedItems)
+        {
+            foreach(var item in checkedItems) {
+                foreach(var item2 in this.FurnitureItems) {
+                    if (item.FurnitureId.Equals(item2.FurnitureId) && item.IsChecked)
+                    {
+                        item2.SelectedQuantity = item.SelectedQuantity;
+                        item2.IsChecked = item.IsChecked;
+                    }
+                }
+            }
+        }
+
+        public void ClearItemSelectionsAndQuantities(ObservableCollection<FurnitureListItem> checkedItems)
+        {
+            foreach(var item in checkedItems) {
+                foreach(var item2 in this.FurnitureItems) {
+                    if (item.FurnitureId.Equals(item2.FurnitureId) && item.IsChecked)
+                    {
+                        item2.SelectedQuantity = 0;
+                        item2.IsChecked = false;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         ///     Retrieves the furniture by style.
         /// </summary>
@@ -184,7 +236,6 @@ namespace RentMeRentalSystem.ViewModel
             var retrievedFurnitureItems =
                 this.convertListFurnitureItemsToListFurnitureListItems(this.furnitureDataAccess.RetrieveFurnitureItems());
             this.FurnitureItems = retrievedFurnitureItems;
-            this.Cost = "Cost: $0";
         }
 
         private ObservableCollection<FurnitureListItem> convertListFurnitureItemsToListFurnitureListItems(
