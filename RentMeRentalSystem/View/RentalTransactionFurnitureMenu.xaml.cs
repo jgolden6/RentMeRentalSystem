@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using RentMeRentalSystem.Model;
@@ -12,13 +13,11 @@ namespace RentMeRentalSystem.View
     /// <summary>
     ///     The furniture inventory page.
     /// </summary>
-    public sealed partial class InventoryMenu : Page
+    public sealed partial class RentalTransactionFurnitureMenu : Page
     {
         #region Data members
 
-        private static readonly DateTimeOffset DEFAULT_DATE = new(DateTime.Now.AddDays(2));
-
-        private readonly InventoryMenuViewModel viewModel;
+        private readonly RentalTransactionFurnitureMenuViewModel viewModel;
 
         private ObservableCollection<FurnitureListItem> checkedItems;
 
@@ -30,14 +29,12 @@ namespace RentMeRentalSystem.View
 
         #region Constructors
 
-        public InventoryMenu()
+        public RentalTransactionFurnitureMenu()
         {
             this.InitializeComponent();
-            this.viewModel = new InventoryMenuViewModel();
+            this.viewModel = new RentalTransactionFurnitureMenuViewModel();
             DataContext = this.viewModel;
             this.Cost.Text = this.viewModel.Cost;
-            this.RentalDatePicker.Date = DEFAULT_DATE;
-            this.RentalDatePicker.MinDate = DEFAULT_DATE;
         }
 
         #endregion
@@ -92,25 +89,23 @@ namespace RentMeRentalSystem.View
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
 
-        private async void CreateRentalTransactionButton_Click(object sender, RoutedEventArgs e)
+        private async void CreateReturnTransactionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.viewModel.CreateRentalTransaction(this.CurrentUserId.Text))
-            {
-                var success = new RentalTransactionConfirmationDialog();
-                DataGridFiller.FillDataGrid(this.viewModel.TransactionInformation, success.TransactionInfoGrid);
-                success.TotalCost.Text = "Total " + this.viewModel.Cost;
-                await success.ShowAsync();
-                this.viewModel.ResetFurnitureItems();
-                this.viewModel.ClearItemSelectionsAndQuantities(this.checkedItems);
-                this.viewModel.Cost = "Cost: $0.00";
-                this.ErrorText.Text = string.Empty;
-                this.helpResetCustomer();
-                this.RentalDatePicker.Date = DEFAULT_DATE;
-            }
-            else
-            {
-                this.ErrorText.Text = "Transaction Denied";
-            }
+            // if (this.viewModel.CreateReturnTransaction(this.CurrentUserId.Text))
+            // {
+            //     var success = new ReturnTransactionConfirmationDialog();
+            //     DataGridFiller.FillDataGrid(this.viewModel.TransactionInformation, success.TransactionInfoGrid);
+            //     success.TotalCost.Text = "Total " + this.viewModel.Cost;
+            //     await success.ShowAsync();
+            //     this.viewModel.ResetFurnitureItems();
+            //     this.viewModel.ClearItemSelectionsAndQuantities(this.checkedItems);
+            //     this.viewModel.Cost = "Cost: $0.00";
+            //     this.ErrorText.Text = string.Empty;
+            // }
+            // else
+            // {
+            //     this.ErrorText.Text = "Transaction Denied";
+            // }
         }
 
         private void ListItemCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -134,13 +129,21 @@ namespace RentMeRentalSystem.View
         {
             this.viewModel.CalculateTransactionCost();
             this.Cost.Text = this.viewModel.Cost;
-            if (this.Cost.Text.Equals("Cost: $0.00") || this.Customer.Text.Equals("CustomerId:") || this.isSearching)
+            bool nothingSelected = true;
+            foreach (var item in this.viewModel.FurnitureItems)
             {
-                this.CreateRentalTransactionButton.IsEnabled = false;
+                if (item.IsChecked)
+                {
+                    nothingSelected = false;
+                }
+            }
+            if (this.isSearching || nothingSelected)
+            {
+                this.CreateReturnTransaction.IsEnabled = false;
             }
             else
             {
-                this.CreateRentalTransactionButton.IsEnabled = true;
+                this.CreateReturnTransaction.IsEnabled = true;
             }
         }
 
@@ -180,24 +183,24 @@ namespace RentMeRentalSystem.View
             this.isSearching = false;
         }
 
-        private void RentalDatePicker_DateChanged(CalendarDatePicker sender,
-            CalendarDatePickerDateChangedEventArgs args)
-        {
-            var hasItems = this.FurnitureListView.Items != null;
-            if (this.RentalDatePicker.Date < DateTime.Now.Date)
-            {
-                this.ErrorText.Text = "Invalid Due Date. Due Date cannot be before today.";
-                this.CreateRentalTransactionButton.IsEnabled = false;
-                this.FurnitureListView.IsEnabled = false;
-            }
-            else
-            {
-                this.ErrorText.Text = string.Empty;
-                this.viewModel.DueDate = this.RentalDatePicker.Date;
-                this.setPreviewCost();
-                this.FurnitureListView.IsEnabled = true;
-            }
-        }
+        // private void RentalDatePicker_DateChanged(CalendarDatePicker sender,
+        //     CalendarDatePickerDateChangedEventArgs args)
+        // {
+        //     var hasItems = this.FurnitureListView.Items != null;
+        //     if (this.RentalDatePicker.Date < DateTime.Now.Date)
+        //     {
+        //         this.ErrorText.Text = "Invalid Due Date. Due Date cannot be before today.";
+        //         this.CreateRentalTransactionButton.IsEnabled = false;
+        //         this.FurnitureListView.IsEnabled = false;
+        //     }
+        //     else
+        //     {
+        //         this.ErrorText.Text = string.Empty;
+        //         this.viewModel.DueDate = this.RentalDatePicker.Date;
+        //         this.setPreviewCost();
+        //         this.FurnitureListView.IsEnabled = true;
+        //     }
+        // }
 
         private bool validateFurnitureId()
         {
@@ -232,51 +235,51 @@ namespace RentMeRentalSystem.View
             Frame.Navigate(typeof(LoginMenu));
         }
 
-        private void RetrieveCustomerButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                this.viewModel.CustomerId = this.CustomerLookupTextBox.Text;
-                this.Customer.Text = this.viewModel.RetrieveCustomer();
-                this.CustomerLookupTextBox.IsEnabled = false;
-                this.CustomerLookupTextBox.Visibility = Visibility.Collapsed;
-                this.RetrieveCustomerButton.IsEnabled = false;
-                this.RetrieveCustomerButton.Visibility = Visibility.Collapsed;
-                this.ResetCustomerButton.IsEnabled = true;
-                this.ResetCustomerButton.Visibility = Visibility.Visible;
-                this.ErrorText.Text = string.Empty;
-                this.setPreviewCost();
-            }
-            catch (Exception)
-            {
-                this.ErrorText.Text = "Invalid search.";
-            }
-        }
-
-        private void ResetCustomerButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.helpResetCustomer();
-            this.setPreviewCost();
-        }
-
-        private void helpResetCustomer()
-        {
-            this.Customer.Text = "CustomerId:";
-            this.CustomerLookupTextBox.Text = string.Empty;
-            this.CustomerLookupTextBox.IsEnabled = true;
-            this.CustomerLookupTextBox.Visibility = Visibility.Visible;
-            this.RetrieveCustomerButton.IsEnabled = true;
-            this.RetrieveCustomerButton.Visibility = Visibility.Visible;
-            this.ResetCustomerButton.IsEnabled = false;
-            this.ResetCustomerButton.Visibility = Visibility.Collapsed;
-        }
-
-        private void ClearSelectionsButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.viewModel.ResetFurnitureItems();
-            this.viewModel.ClearItemSelectionsAndQuantities(this.checkedItems);
-            this.viewModel.Cost = "Cost: $0.00";
-        }
+        // private void RetrieveCustomerButton_Click(object sender, RoutedEventArgs e)
+        // {
+        //     try
+        //     {
+        //         this.viewModel.CustomerId = this.CustomerLookupTextBox.Text;
+        //         this.Customer.Text = this.viewModel.RetrieveCustomer();
+        //         this.CustomerLookupTextBox.IsEnabled = false;
+        //         this.CustomerLookupTextBox.Visibility = Visibility.Collapsed;
+        //         this.RetrieveCustomerButton.IsEnabled = false;
+        //         this.RetrieveCustomerButton.Visibility = Visibility.Collapsed;
+        //         this.ResetCustomerButton.IsEnabled = true;
+        //         this.ResetCustomerButton.Visibility = Visibility.Visible;
+        //         this.ErrorText.Text = string.Empty;
+        //         this.setPreviewCost();
+        //     }
+        //     catch (Exception)
+        //     {
+        //         this.ErrorText.Text = "Invalid search.";
+        //     }
+        // }
+        //
+        // private void ResetCustomerButton_Click(object sender, RoutedEventArgs e)
+        // {
+        //     this.helpResetCustomer();
+        //     this.setPreviewCost();
+        // }
+        //
+        // private void helpResetCustomer()
+        // {
+        //     this.Customer.Text = "CustomerId:";
+        //     this.CustomerLookupTextBox.Text = string.Empty;
+        //     this.CustomerLookupTextBox.IsEnabled = true;
+        //     this.CustomerLookupTextBox.Visibility = Visibility.Visible;
+        //     this.RetrieveCustomerButton.IsEnabled = true;
+        //     this.RetrieveCustomerButton.Visibility = Visibility.Visible;
+        //     this.ResetCustomerButton.IsEnabled = false;
+        //     this.ResetCustomerButton.Visibility = Visibility.Collapsed;
+        // }
+        //
+        // private void ClearSelectionsButton_Click(object sender, RoutedEventArgs e)
+        // {
+        //     this.viewModel.ResetFurnitureItems();
+        //     this.viewModel.ClearItemSelectionsAndQuantities(this.checkedItems);
+        //     this.viewModel.Cost = "Cost: $0.00";
+        // }
 
         #endregion
     }

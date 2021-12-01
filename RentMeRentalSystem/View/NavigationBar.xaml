@@ -52,6 +52,7 @@
                 <NavigationViewItem Tag="MemberRegistration" Visibility="Collapsed" />
                 <NavigationViewItem Tag="MemberSearch" Visibility="Collapsed" />
                 <NavigationViewItem Tag="MemberUpdate" Visibility="Collapsed" />
+                <NavigationViewItem Tag="RentalTransactionFurnitureMenu" Visibility="Collapsed" />
             </NavigationView.MenuItems>
             <ScrollViewer>
                 <Frame x:Name="ContentFrame" Padding="12,0,12,24" IsTabStop="True"

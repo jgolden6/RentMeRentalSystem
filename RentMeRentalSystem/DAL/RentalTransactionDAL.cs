@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Transactions;
 using Windows.Data.Json;
 using DBAccess.DAL;
 using MySql.Data.MySqlClient;
 using RentMeRentalSystem.Model;
-using Transaction = RentMeRentalSystem.Model.Transaction;
 
 namespace RentMeRentalSystem.DAL
 {
@@ -39,7 +36,7 @@ namespace RentMeRentalSystem.DAL
                     cmd.Parameters.AddWithValue("@rental", rentalBase.GetArray().ToString());
                     cmd.Parameters.AddWithValue("@rental_items", rentalItems.GetArray().ToString());
                     cmd.Parameters.AddWithValue("@rental_date", DateTimeOffset.Now.Date.ToString("yyyy-MM-dd"));
-                    MySqlTransaction myTrans = conn.BeginTransaction();
+                    var myTrans = conn.BeginTransaction();
 
                     try
                     {
@@ -65,7 +62,6 @@ namespace RentMeRentalSystem.DAL
                     }
 
                     return false;
-
                 }
             }
         }
@@ -87,7 +83,7 @@ namespace RentMeRentalSystem.DAL
         {
             var table = new DataTable();
             var query =
-                "SELECT ri.rentalId, f.furnitureId, f.categoryName, f.styleName, f.daily_rental_rate, ri.quantity FROM furniture f, rental_item ri WHERE f.furnitureId = ri.furnitureId AND ri.rentalId =( SELECT MAX(rentalId) FROM rental_item )";
+                "call retrieve_recent_rental_transaction()";
             using (var da = new MySqlDataAdapter(query, Connection.connectionString))
             {
                 da.Fill(table);
@@ -129,14 +125,34 @@ namespace RentMeRentalSystem.DAL
 
         public List<Transaction> RetrieveAllRentalTransactions()
         {
-            using var conn = new MySqlConnection(Connection.connectionString);
-            var query = "call retrieve_transactions_of_type(@type); ";
-            using var cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.Add("@type", MySqlDbType.VarChar);
-            cmd.Parameters["@type"].Value = TransactionType.Rental.ToString().ToLower();
-            using var reader = cmd.ExecuteReader();
-            var retrieved = this.helpRetrieveTransactions(reader, TransactionType.Rental);
-            return retrieved;
+            using (var conn = new MySqlConnection(Connection.connectionString))
+            {
+                conn.Open();
+                var query = "call retrieve_transactions_of_type(@type); ";
+                using var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.Add("@type", MySqlDbType.VarChar);
+                cmd.Parameters["@type"].Value = TransactionType.Rental.ToString().ToLower();
+                using var reader = cmd.ExecuteReader();
+                var retrieved = this.helpRetrieveTransactions(reader, TransactionType.Rental);
+                return retrieved;
+            }
+        }
+
+        public List<Transaction> RetrieveCustomerRentalTransactions(string customerId)
+        {
+            using (var conn = new MySqlConnection(Connection.connectionString))
+            {
+                conn.Open();
+                var query = "call retreive_customer_transactions(@customerId, @type); ";
+                using var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.Add("@type", MySqlDbType.VarChar);
+                cmd.Parameters["@type"].Value = TransactionType.Rental.ToString().ToLower();
+                cmd.Parameters.Add("@customerId", MySqlDbType.Int64);
+                cmd.Parameters["@customerId"].Value = int.Parse(customerId);
+                using var reader = cmd.ExecuteReader();
+                var retrieved = this.helpRetrieveTransactions(reader, TransactionType.Rental);
+                return retrieved;
+            }
         }
 
         private List<Transaction> helpRetrieveTransactions(MySqlDataReader reader, TransactionType type)
@@ -147,7 +163,7 @@ namespace RentMeRentalSystem.DAL
             var customerIdOrdinal = reader.GetOrdinal("customerId");
             var feeOrdinal = reader.GetOrdinal("fee");
             var dueDateOrdinal = reader.GetOrdinal("dueDate");
-            var transactionDateOrdinal = reader.GetOrdinal(this.helpDetermineTransactionTermDateColumn(type));
+            var transactionDateOrdinal = reader.GetOrdinal("rentalDate");
             while (reader.Read())
             {
                 var transactionId = reader.GetFieldValueCheckNull<int>(transactionIdOrdinal).ToString();
@@ -163,17 +179,6 @@ namespace RentMeRentalSystem.DAL
             }
 
             return retrieved;
-        }
-
-        private string helpDetermineTransactionTermDateColumn(TransactionType type)
-        {
-            var transactionDateColumn = type switch {
-                TransactionType.Rental => "rentalDate",
-                TransactionType.Return => "returnDate",
-                _ => string.Empty
-            };
-
-            return transactionDateColumn;
         }
 
         #endregion

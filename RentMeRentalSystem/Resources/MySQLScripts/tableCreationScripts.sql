@@ -269,7 +269,7 @@ DROP
 PROCEDURE IF EXISTS calculate_rental_transaction_cost;
 DELIMITER
     $
-CREATE PROCEDURE calculate_rental_transaction_cost(IN items TEXT)
+CREATE PROCEDURE calculate_rental_transaction_cost(IN items TEXT, IN rental_date DATE)
 BEGIN
     DECLARE
         cost DECIMAL(9, 2) ;
@@ -277,7 +277,7 @@ BEGIN
         cost =(
         SELECT
             SUM(
-                f.daily_rental_rate * qty * TIMESTAMPDIFF(DAY, NOW(), due_date))
+                f.daily_rental_rate * qty * TIMESTAMPDIFF(DAY, rental_date, due_date))
             FROM
                 furniture f,
                 JSON_TABLE(
@@ -297,7 +297,7 @@ BEGIN
 
 CALL
     calculate_rental_transaction_cost(
-        "[{\"id\":10000, \"qty\":5, \"dueDate\": \"2021-12-11\"}, {\"id\":10001, \"qty\":3, \"dueDate\": \"2021-12-11\"}, {\"id\":10004, \"qty\":6, \"dueDate\": \"2021-12-11\"}]");
+        "[{\"id\":10000, \"qty\":5, \"dueDate\": \"2021-12-11\"}, {\"id\":10001, \"qty\":3, \"dueDate\": \"2021-12-11\"}, {\"id\":10004, \"qty\":6, \"dueDate\": \"2021-12-11\"}], "2021-12-10");
 
         DROP
 DROP
@@ -397,3 +397,81 @@ FROM
     rental_item ri
 WHERE
     f.furnitureId = ri.furnitureId AND ri.rentalId =( SELECT MAX(rentalId) FROM rental_item );
+    DROP
+PROCEDURE IF EXISTS retrieve_transactions_of_type;
+DELIMITER
+    $
+CREATE PROCEDURE retrieve_transactions_of_type(IN trans_type VARCHAR(8))
+BEGIN
+        IF trans_type = "rental" THEN
+    SELECT
+        *
+    FROM
+        rental_transaction rt,
+        `transaction` t
+    WHERE
+        rt.rentalId = t.transactionId ; ELSEIF trans_type = "return" THEN
+    SELECT
+        *
+    FROM
+        return_transaction rt2,
+        `transaction` t
+    WHERE
+        rt.rentalId = t.transactionId ;
+    END IF ;
+END
+
+DROP
+PROCEDURE IF EXISTS retrieve_recent_rental_transaction;
+DELIMITER
+    $
+CREATE PROCEDURE retrieve_recent_rental_transaction()
+BEGIN
+    SELECT
+        ri.rentalId, f.furnitureId, f.categoryName, f.styleName, f.daily_rental_rate, ri.quantity
+    FROM
+        furniture f, rental_item ri
+    WHERE
+        f.furnitureId = ri.furnitureId AND ri.rentalId =(
+        SELECT
+            MAX(rentalId)
+        FROM
+            rental_item
+    );
+END
+DROP
+PROCEDURE IF EXISTS retreive_items_on_transaction;
+DELIMITER
+    $
+CREATE PROCEDURE retreive_items_on_transaction(
+    IN transactionId INTEGER,
+    IN trans_type VARCHAR(8)
+)
+BEGIN
+        IF trans_type = "rental" THEN
+    SELECT
+        f.furnitureId,
+        f.categoryName,
+        f.styleName,
+        f.daily_rental_rate,
+        ri.quantity
+    FROM
+        furniture f,
+        `transaction` t,
+        rental_item ri
+    WHERE
+        ri.rentalId = t.transactionId AND f.furnitureId = ri.rentalId ; ELSEIF trans_type = "return" THEN
+    SELECT
+        f2.furnitureId,
+        f2.categoryName,
+        f2.styleName,
+        f2.daily_rental_rate,
+        ri2.quantity
+    FROM
+        furniture f2,
+        `transaction` t2,
+        return_item ri2
+    WHERE
+        ri2.rentalId = t2.transactionId AND f2.furnitureId = ri2.rentalId ;
+    END IF ;
+END

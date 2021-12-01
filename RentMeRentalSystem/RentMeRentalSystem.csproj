@@ -134,6 +134,7 @@
     <Compile Include="DAL\FurnitureDAL.cs" />
     <Compile Include="DAL\RentalItemDAL.cs" />
     <Compile Include="DAL\RentalTransactionDAL.cs" />
+    <Compile Include="DAL\ReturnTransactionDAL.cs" />
     <Compile Include="DAL\SecurePasswordHasher.cs" />
     <Compile Include="DAL\AdminDAL.cs" />
     <Compile Include="Model\DataGridFiller.cs" />
@@ -149,10 +150,18 @@
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\USStates.cs" />
     <Compile Include="ViewModel\InventoryMenuViewModel.cs" />
+    <Compile Include="ViewModel\RentalTransactionFurnitureMenuViewModel.cs" />
+    <Compile Include="ViewModel\TransactionsMenuViewModel.cs" />
     <Compile Include="View\AdminQueryMenu.xaml.cs">
       <DependentUpon>AdminQueryMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FurnitureListItem.cs" />
+    <Compile Include="View\ReturnTransactionConfirmationDialog.xaml.cs">
+      <DependentUpon>ReturnTransactionConfirmationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RentalTransactionFurnitureMenu.xaml.cs">
+      <DependentUpon>RentalTransactionFurnitureMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\InventoryMenu.xaml.cs">
       <DependentUpon>InventoryMenu.xaml</DependentUpon>
     </Compile>
@@ -177,6 +186,9 @@
     </Compile>
     <Compile Include="View\RentalTransactionConfirmationDialog.xaml.cs">
       <DependentUpon>RentalTransactionConfirmationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TransactionsMenu.xaml.cs">
+      <DependentUpon>TransactionsMenu.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +215,14 @@
     <Page Include="View\AdminQueryMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReturnTransactionConfirmationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RentalTransactionFurnitureMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\InventoryMenu.xaml">
       <SubType>Designer</SubType>
@@ -233,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RentalTransactionConfirmationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TransactionsMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

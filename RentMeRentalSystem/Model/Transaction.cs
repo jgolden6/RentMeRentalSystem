@@ -18,8 +18,9 @@ namespace RentMeRentalSystem.Model
 
         public DateTime TransactionDate { get; set; }
 
-        public TransactionType Type { get; set; }
+        public bool IsChecked { get; set; }
 
+        public string StringValue => $"{TransactionId}, {EmployeeId}, {CustomerId}, {Fee}, {DueDate.ToShortDateString()}, {TransactionDate.ToShortDateString()}";
         #endregion
     }
 }

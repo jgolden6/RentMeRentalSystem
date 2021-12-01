@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="RentMeRentalSystem.View.TransactionsMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:RentMeRentalSystem.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Height="600"
+    Width="600">
+
+    <Page.DataContext>
+        <viewModel:TransactionMenuViewModel />
+    </Page.DataContext>
+
+    <Grid>
+        <TextBlock x:Name="CurrentUsername" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Text="{Binding Path=Username, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="12,10,416,764"
+                   RenderTransformOrigin="0.631,0.962">
+            <TextBlock.DataContext>
+                <viewModel:CurrentUser />
+            </TextBlock.DataContext>
+        </TextBlock>
+        <TextBlock x:Name="CurrentUserId" TextAlignment="Left" VerticalAlignment="Top" HorizontalAlignment="Right"
+                   Text="{Binding Path=IdNumber, Mode=OneWay}" TextWrapping="Wrap" Height="26" Margin="0,10,100,0">
+            <TextBlock.DataContext>
+                <viewModel:CurrentUser />
+            </TextBlock.DataContext>
+        </TextBlock>
+        <TextBlock x:Name="CurrentUserFullName" TextAlignment="Left" VerticalAlignment="Top"
+                   HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap"
+                   Height="26" Margin="0,10,200,0">
+            <TextBlock.DataContext>
+                <viewModel:CurrentUser />
+            </TextBlock.DataContext>
+        </TextBlock>
+        <TextBlock x:Name="ErrorText" Foreground="Red" Margin="235,508,9,15" TextWrapping="Wrap" />
+        <ComboBox x:Name="TransactionTypeComboBox" Margin="165,82,0,0" Width="145"
+                  SelectionChanged="TransactionTypeComboBox_SelectionChanged" ItemsSource="{Binding Path=TransactionTypes, Mode=OneTime}"/>
+        <ListView x:Name="TransactionListView" BorderBrush="Gray" BorderThickness="0 3 0 3" Margin="0,133,0,163"
+                      ItemsSource="{Binding Path=TransactionItems, Mode=TwoWay}" IsItemClickEnabled="True" Height="300">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Width="585">
+                        <CheckBox x:Name="listItemCheckBox" IsChecked="{Binding IsChecked,Mode=TwoWay}"/>
+                        <TextBlock x:Name="listTextCheckBox" Text="{Binding StringValue,Mode=OneWay}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button x:Name="ViewSelectedTransactionsFurnitureItemsButton" Margin="458,451,0,0" VerticalAlignment="Top" IsEnabled="False"
+                Height="50" Width="132" Click="ViewSelectedTransactionsFurnitureItemsButton_Click">
+            <TextBlock Text="View Furniture" TextWrapping="Wrap" TextAlignment="Center"
+                       HorizontalAlignment="Left" Width="83" />
+        </Button>
+        <Button x:Name="LogoutButton" Content="Logout" Margin="520,8,0,0" VerticalAlignment="Top" Width="70"
+                Click="LogoutButton_Click" />
+        <TextBlock x:Name="Customer" HorizontalAlignment="Left" Height="26" Margin="12,468,0,0" Text="CustomerId:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="CustomerLookupTextBox" HorizontalAlignment="Left" Margin="94,468,0,0" VerticalAlignment="Top" Width="210"/>
+        <TextBlock HorizontalAlignment="Left" Height="26"  Margin="10,661,0,0" Text="Select Due Date:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Margin="318,468,0,0" VerticalAlignment="Top" Width="40" x:Name="RetrieveCustomerButton" Click="RetrieveCustomerButton_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;" Width="20" Height="20" VerticalAlignment="Bottom" />
+        </Button>
+        <Button Content="Clear" Margin="318,468,0,0" VerticalAlignment="Top" Width="55" Visibility="Collapsed" IsEnabled="False" x:Name="ResetCustomerButton" Click="ResetCustomerButton_Click"/>
+        <Button Click="ClearSelectionsButton_Click" Margin="25,517,0,0" VerticalAlignment="Top">
+            <TextBlock Text="Clear Selections and Filters" TextWrapping="WrapWholeWords"  TextAlignment="Center"
+                       HorizontalAlignment="Left" Width="83" />
+        </Button>
+        <TextBlock HorizontalAlignment="Left" Margin="25,85,0,0" Text="Transaction Type:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
+        <Button Margin="383,468,0,0" VerticalAlignment="Top" Click="FilterButton_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE71C;" Width="20" Height="20" VerticalAlignment="Bottom" />
+            </Button>
+    </Grid>
+</Page>
