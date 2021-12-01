@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
-using System.Runtime.Serialization;
 using Windows.Data.Json;
 using RentMeRentalSystem.Annotations;
 using RentMeRentalSystem.DAL;
