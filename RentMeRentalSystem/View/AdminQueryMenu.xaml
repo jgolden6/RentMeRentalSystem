@@ -26,10 +26,11 @@
                    HorizontalAlignment="Right" Text="{Binding Path=FullName, Mode=OneWay}" TextWrapping="Wrap"
                    Height="26" Margin="0,10,200,0" />
         <Custom:DataGrid x:Name="QueryDataGrid" HorizontalAlignment="Center" Height="579" Margin="0,211,0,0" VerticalAlignment="Top" Width="930"/>
-        <TextBox x:Name="QueryTextBox" HorizontalAlignment="Left" Margin="46,132,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="577" PlaceholderText="Input query"/>
-        <Button x:Name="InputQueryButton" Content="Input Query" Margin="715,133,0,0" VerticalAlignment="Top" Width="142" Click="InputQueryButton_Click"/>
+        <TextBox x:Name="QueryTextBox" HorizontalAlignment="Left" Margin="46,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="655" PlaceholderText="Input query"/>
+        <Button x:Name="InputQueryButton" Content="Input Query" Margin="750,132,0,0" VerticalAlignment="Top" Width="142" Click="InputQueryButton_Click"/>
         <Button x:Name="LogoutButton" Content="Logout" Margin="870,10,0,0" VerticalAlignment="Top" Width="70" Click="LogoutButton_Click"/>
-        <TextBlock x:Name="QueryErrorTextBlock" HorizontalAlignment="Left" Margin="46,179,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="577" FocusVisualPrimaryBrush="White" Foreground="Red"/>
+        <TextBlock x:Name="QueryErrorTextBlock" HorizontalAlignment="Left" Margin="46,179,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="651" FocusVisualPrimaryBrush="White" Foreground="Red"/>
+        <Button x:Name="ReportMenuButton" Content="Report Menu" Margin="46,59,0,0" VerticalAlignment="Top" Height="53" Width="119" Click="ReportMenuButton_Click"/>
 
     </Grid>
 </Page>

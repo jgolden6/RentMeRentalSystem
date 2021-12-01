@@ -152,6 +152,9 @@
     <Compile Include="View\AdminQueryMenu.xaml.cs">
       <DependentUpon>AdminQueryMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AdminReportMenu.xaml.cs">
+      <DependentUpon>AdminReportMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FurnitureListItem.cs" />
     <Compile Include="View\InventoryMenu.xaml.cs">
       <DependentUpon>InventoryMenu.xaml</DependentUpon>
@@ -201,6 +204,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="View\AdminQueryMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminReportMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

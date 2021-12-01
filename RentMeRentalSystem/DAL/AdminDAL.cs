@@ -23,5 +23,22 @@ namespace RentMeRentalSystem.Model
 
             return table;
         }
+
+        public DataTable ViewReportBetweenTwoDates(string startDate, string endDate)
+        {
+            DataTable table = new DataTable();
+            string query = $"select c.customerId, concat(c.fname, ' ', c.lname) as fullName, c.phoneNumber, t.transactionId, " +
+                $"rt.rentalDate, t.fee, ri.furnitureId, ri.quantity, f.categoryName, f.styleName, f.daily_rental_rate " +
+                $"from customer as c, transaction as t, rental_transaction as rt, rental_item as ri, furniture as f " +
+                $"where c.customerId = t.customerId and t.transactionId = rt.rentalId and t.transactionId = ri.rentalId " +
+                $"and ri.furnitureId = f.furnitureId and rt.rentalDate between {startDate} and {endDate}";
+
+            using (var da = new MySqlDataAdapter(query, Connection.connectionString))
+            {
+                da.Fill(table);
+            }
+
+            return table;
+        }
     }
 }

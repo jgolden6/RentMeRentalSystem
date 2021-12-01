@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using RentMeRentalSystem.Model;
 using RentMeRentalSystem.ViewModel;
+using System.Text.RegularExpressions;
 
 namespace RentMeRentalSystem.View
 {

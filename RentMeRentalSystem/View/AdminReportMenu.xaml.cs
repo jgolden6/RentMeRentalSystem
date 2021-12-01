@@ -1,11 +1,7 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using MySql.Data.MySqlClient;
-using RentMeRentalSystem.Model;
+﻿using RentMeRentalSystem.Model;
 using RentMeRentalSystem.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,34 +22,32 @@ namespace RentMeRentalSystem.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AdminQueryMenu : Page
+    public sealed partial class AdminReportMenu : Page
     {
         AdminDAL DataAccess = new AdminDAL();
 
-        public AdminQueryMenu()
+        public AdminReportMenu()
         {
             this.InitializeComponent();
         }
 
-        private void InputQueryButton_Click(object sender, RoutedEventArgs e)
+        private void ViewReportButton_Click(object sender, RoutedEventArgs e)
         {
-            QueryDataGrid.ItemsSource = null;
-            QueryErrorTextBlock.Text = "";
+            ReportDataGrid.ItemsSource = null;
+            string startDate = '\'' + StartDatePicker.Date.Year.ToString() + '-' +
+                               StartDatePicker.Date.Month.ToString() + '-' +
+                               StartDatePicker.Date.Day.ToString() + '\'';
+            string endDate = '\'' + EndDatePicker.Date.Year.ToString() + '-' +
+                               EndDatePicker.Date.Month.ToString() + '-' +
+                               EndDatePicker.Date.Day.ToString() + '\'';
 
-            try
-            {
-                DataGridFiller.FillDataGrid(DataAccess.PoseQuery(QueryTextBox.Text), QueryDataGrid);
-            }
-            catch (MySqlException)
-            {
-                QueryErrorTextBlock.Text = "Invalid query.";
-            }
-            
+            DataGridFiller.FillDataGrid(DataAccess.ViewReportBetweenTwoDates(startDate, endDate), ReportDataGrid);
+
         }
 
-        private void ReportMenuButton_Click(object sender, RoutedEventArgs e)
+        private void QueryMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AdminReportMenu));
+            this.Frame.Navigate(typeof(AdminQueryMenu));
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

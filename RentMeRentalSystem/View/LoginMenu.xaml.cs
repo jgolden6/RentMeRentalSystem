@@ -53,7 +53,15 @@ namespace RentMeRentalSystem
                 CurrentUser.IdNumber = this.Employee.IdNumber;
                 CurrentUser.Username = this.Employee.Username;
                 CurrentUser.FullName = this.Employee.FullName;
-                this.Frame.Navigate(typeof(NavigationBar));
+                if ((bool)!AdminRadioButton.IsChecked)
+                {
+                    this.Frame.Navigate(typeof(NavigationBar));
+                }
+                else
+                {
+                    this.Frame.Navigate(typeof(AdminQueryMenu));
+                }
+
             }
             else
             {
